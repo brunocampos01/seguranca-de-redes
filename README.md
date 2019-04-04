@@ -1,2 +1,1 @@
-# seguranca
-Repositório para as aulas, exercícios e resumos da matéria: segurança da informação e redes(INE5680).
+# Segurança da Informação e de Redes
