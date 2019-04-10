@@ -32,7 +32,9 @@ Bruno Aurélio Rôzza de Moura Campos 14104255
 - O parâmetro `-v` serve para retornar as ações do nmap de modo verboso.
 - O parâmetro `--top-ports 10` retorna as portas mais comuns.
 - O parâmetro `--reason` mostra o motivo pelo qual uma porta está em um estado específico.
-- O parâmetro `-oA` mostra os três principais formatos de uma só vez.
+- O parâmetro `-oA` mostra os três principais formatos de uma só vez.<br/>
+Alem disso foi gerado 3 arquivos, `saidanmap.gnmap`, `saidanmap.nmap` e `saidanmap.xml` contendo uma tabela com a porta, estado, serviço e motivo do estado da porta, alem dos parâmetros, verbose, debugging, host, address, hostnames e scaninfo.
+
 
 ### Questão 4.
 (Apresentação) Crie um comando nmap com opções diferentes das usadas nas questões

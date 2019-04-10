@@ -1,0 +1,4 @@
+# Nmap 7.60 scan initiated Tue Apr  9 21:43:27 2019 as: nmap --top-ports 10 --reason -oA saidanmap –sS –v www.ufsc.br
+Host: 150.162.2.10 (paginas.ufsc.br)	Status: Up
+Host: 150.162.2.10 (paginas.ufsc.br)	Ports: 21/filtered/tcp//ftp///, 22/filtered/tcp//ssh///, 23/filtered/tcp//telnet///, 25/filtered/tcp//smtp///, 80/open/tcp//http///, 110/filtered/tcp//pop3///, 139/filtered/tcp//netbios-ssn///, 443/open/tcp//https///, 445/filtered/tcp//microsoft-ds///, 3389/filtered/tcp//ms-wbt-server///
+# Nmap done at Tue Apr  9 21:43:29 2019 -- 1 IP address (1 host up) scanned in 1.55 seconds
