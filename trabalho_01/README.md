@@ -1,15 +1,25 @@
-# Tarefa Prática 1
+# Tarefa Prática 1 - Nmap, Web, Shodan, Metasploit
 
 #### Nomes:
 Bruno Aurélio Rôzza de Moura Campos (14104255)<br/>
 Caio Cargnin Cardoso (09138003)
+
+#### Matéria:
+- Segurança da informação e sistemas - INE5680
+
+#### Arquivo de Configuração:
+- [configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti](trabalho_01/configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti.pdf)
+
+#### Arquivo de Descrição do trabalho:
+- [INE5680-tarefa_pratica_metasploit_v14.pdf](trabalho_01/INE5680-tarefa_pratica_metasploit_v14.pdf)
+
 
 ## PARTE 1.NMAP
 
 ### Questão 1. 
 `nmap –sV -O 10.1.2.6` (IP da máquina Owasp Broken, o seu IP pode ser diferente)
 
-<img src=questao_1.png>
+<img src=question_1.png>
 
  - Os parâmetros `-sV` servem para: detectar portas abertas para determinar informações de serviço / versão. Neste caso foi encontrado 9 portas abertas executando serviços do tipo ssh, http, imap, netbios-ssn, java-rmi e ssl.
  - O parâmetro `-O` serve para detectar o sistema operacional.
@@ -17,11 +27,11 @@ Caio Cargnin Cardoso (09138003)
 ### Questão 2.
 `nmap -v –A 10.1.2.6` (IP da máquina Owasp Broken)
 
-<img src=questao_2_a.png>
+<img src="question_2_a.png">
 
-<img src=questao_2_b.png>
+<img src="question_2_b.png">
 
-<img src=questao_2_c.png>
+<img src="question_2_c.png">
 
 - O parâmetro `-v` serve para retornar as ações do nmap de modo verboso.
 - O parâmetro `-A` serve para detectar alem da sistema operacional do host atacado, as portas abertas, o estado das portas, o serviço que roda em cada porta e qual a versão que esta sendo executado. Com este parâmetro é rodado um script scanning, e traceroute, conforme figura 4.
@@ -29,7 +39,7 @@ Caio Cargnin Cardoso (09138003)
 ### Questão 3.
 `nmap –sS –v --top-ports 10 --reason -oA saidanmap www.ufsc.br`
 
-<img src=questao_3.png>
+<img src="question_3.png">
 
 - O parâmetro `-sS` serve para retornar os pacotes TCP SYN. Na imagem 5, na coluna REASON é mostrado quais portas com os seus respectivos serviços retornaram algum resposta.
 - O parâmetro `-v` serve para retornar as ações do nmap de modo verboso.
@@ -43,7 +53,7 @@ Alem disso foi gerado 3 arquivos, `saidanmap.gnmap`, `saidanmap.nmap` e `saidanm
 (Apresentação) Crie um comando nmap com opções diferentes das usadas nas questões
 anteriores e explique a saída obtida pelo seu comando.
 
-<img src=questao_4.png>
+<img src=question_4.png>
 
 - O parâmetro `--traceroute` mostra todos os saltos e hosts passados até o alvo.
 
@@ -74,7 +84,7 @@ Execute o comando: `nikto -host http://10.1.2.6/WackoPicko/ –o nikto.html–Fo
 
 **a. Copie e cole screenshots (pedaços) de telas obtidas na execução do comando.**<br/>
 
-<image src=nikto_output.png>
+<image src="question_6_nikto.png">
 
 **b. Explique o que mais chamou sua atenção na saída obtida. Explique também alguma vulnerabilidade encontrada nessa aplicação (WackoPicko) que consta no relatório do arquivo muti.html.**
 
@@ -86,9 +96,9 @@ O que mais nos chamou a atenção foram 2 pontos:<br/>
 
 Sobre as vulnerabilidades, o nikto retornou o arquivo `nikto.html` contendo todas as vulnerabilidades encontrada:<br/>
 
-<image src="q6.png">
+<image src="question_6.png">
 
-Nesta vulnerabilidade da imagem acima é possível ver que através de uma requisição HTTP GET é possível ter acesso privilegiado na página sem necessitar de autenticação.
+Nesta vulnerabilidade da imagem acima é notável observar que através de uma requisição HTTP GET é possível ter acesso privilegiado na página sem necessitar de autenticação.
 
 ---
 
@@ -155,7 +165,7 @@ A melhor opção é usar uma API segura para realizar a autenticação.
 ## PARTE 4.Vulnerabilidades em IoT
 
 ### Questão 12.
-Leia a reportagem com título “Find webcams, databases, boats in the sea using Shodan”disponível emhttps://www.securitynewspaper.com/2018/11/27/find-webcams-databases-boats-in-the-sea-using-shodan/.<br/>
+Leia a reportagem com título “Find webcams, databases, boats in the sea using Shodan”disponível em (https://www.securitynewspaper.com/2018/11/27/find-webcams-databases-boats-in-the-sea-using-shodan/).<br/>
 Responda:
 
 **a. O que é o Shodane o que é possível fazer com este site?**<br/>
@@ -164,7 +174,7 @@ O Shodan é um scanner que encontra dispositivos conectados pela internet. O Sho
 **b. (Apresentação) Faça o registro no site, pesquise e liste algum dispositivo IoT que você encontrou.**<br/>
 Na figura abaixo, segue uma list com 4 cameras IP com acesso livre
 
-<image src=12.b.png>
+<image src="question_12.png">
 
 
 ### Questão 13.
@@ -175,7 +185,7 @@ Responda:
 
 **b. Um atacante poderia fazer o que com este acesso?**<br/>
 
-Um ataque poderia ser, desligar a câmera num período propício ou senão podem ser utilizadas para realizar um ataque DDos. 
+Um ataque poderia ser o desligamento da câmera num período propício ou senão, as cameras podem ser utilizadas para realizar um ataque DDos.
 
 ---
 
@@ -184,7 +194,7 @@ Um ataque poderia ser, desligar a câmera num período propício ou senão podem
 ### Questão 14.
 Copie e cole o screenshot da sua tela ao realizar o experimento anterior. Depois, explique o experimento:<br/>
 
-<image src="metasploit_14.png">
+<image src="question_14.png">
 
 **a. O que é o ataque do dicionário?**<br/>
 É um ataque que utiliza um banco de dados com logins e senhas para tentar descobrir os dados da vítima através da força bruta.
@@ -192,11 +202,11 @@ Copie e cole o screenshot da sua tela ao realizar o experimento anterior. Depois
 **b. O que foi encontrado?**<br/>
 Foi possível encontrar o login e senha da vítima.
 
-**c. Qual foi a vulnerabilidade usada para obter esse resultado?**
-Vulnerabilidade: CVE-2009-4189
+**c. Qual foi a vulnerabilidade usada para obter esse resultado?**<br/>
+Vulnerabilidade: CVE-2009-4189<br/>
 A vítima usa uma senha padrão, o que permite que o atacante possa executar um ataque arbitrário utilizando força bruta e tenha acesso ao terminal da máquina dela através do Tomcat.
 
-**d. Como pode ser explorado esse resultado?**
+**d. Como pode ser explorado esse resultado?**<br/>
 Com o login e senha, é possível fazer um acesso remoto na máquina da vítima e ter
 controle sobre ela.
 
@@ -215,9 +225,12 @@ O exploit concede a um usuário não autorizado acesso no sistema da vítima de 
 Meterpreter é um payload do Metasploit que oferece ferramentas que auxiliam o invasor
 em um ataque, fornecendo informações sobre a vítima.
 
-**d. O  que  é  possível  fazer  depois  que  o  exploit  é  executado?  Use  pelo  menos  dois  comandos  do meterpreter  listados  com  o  comando  help  ou  listadosna  Figura 13e  explique  cada  um  deles, colocando a imagem da execução dos seus comandos. Alguns comandos para máquinas Windows não funcionarão na máquina Linux.**
+**d. O  que  é  possível  fazer  depois  que  o  exploit  é  executado?  Use  pelo  menos  dois  comandos  do meterpreter  listados  com  o  comando  help  ou  listados na  Figura 13 e  explique  cada  um  deles, colocando a imagem da execução dos seus comandos. Alguns comandos para máquinas Windows não funcionarão na máquina Linux.**
 
+- Comando `getsystem`: torna possível obter informações do sistema da vítima.
+- Comando `clearev`: faz o wipe das informações de acessos (rastros)
 
+<image src="question_15.png">
 
 
 ### Referências:
