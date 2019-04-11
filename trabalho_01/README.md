@@ -8,10 +8,10 @@ Caio Cargnin Cardoso (09138003)
 - Segurança da informação e sistemas - INE5680
 
 #### Arquivo de Configuração:
-- [configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti](trabalho_01/configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti.pdf)
+- [configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti](configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti.pdf)
 
 #### Arquivo de Descrição do trabalho:
-- [INE5680-tarefa_pratica_metasploit_v14.pdf](trabalho_01/INE5680-tarefa_pratica_metasploit_v14.pdf)
+- [INE5680-tarefa_pratica_metasploit_v14.pdf](INE5680-tarefa_pratica_metasploit_v14.pdf)
 
 
 ## PARTE 1.NMAP
@@ -19,7 +19,7 @@ Caio Cargnin Cardoso (09138003)
 ### Questão 1. 
 `nmap –sV -O 10.1.2.6` (IP da máquina Owasp Broken, o seu IP pode ser diferente)
 
-<img src=question_1.png>
+<img src="images/question_1.png">
 
  - Os parâmetros `-sV` servem para: detectar portas abertas para determinar informações de serviço / versão. Neste caso foi encontrado 9 portas abertas executando serviços do tipo ssh, http, imap, netbios-ssn, java-rmi e ssl.
  - O parâmetro `-O` serve para detectar o sistema operacional.
@@ -27,11 +27,11 @@ Caio Cargnin Cardoso (09138003)
 ### Questão 2.
 `nmap -v –A 10.1.2.6` (IP da máquina Owasp Broken)
 
-<img src="question_2_a.png">
+<img src="images/question_2_a.png" width=80% height=80%>
 
-<img src="question_2_b.png">
+<img src="images/question_2_b.png" width=80% height=80%>
 
-<img src="question_2_c.png">
+<img src="images/question_2_c.png" width=80% height=80%>
 
 - O parâmetro `-v` serve para retornar as ações do nmap de modo verboso.
 - O parâmetro `-A` serve para detectar alem da sistema operacional do host atacado, as portas abertas, o estado das portas, o serviço que roda em cada porta e qual a versão que esta sendo executado. Com este parâmetro é rodado um script scanning, e traceroute, conforme figura 4.
@@ -39,7 +39,7 @@ Caio Cargnin Cardoso (09138003)
 ### Questão 3.
 `nmap –sS –v --top-ports 10 --reason -oA saidanmap www.ufsc.br`
 
-<img src="question_3.png">
+<img src="images/question_3.png">
 
 - O parâmetro `-sS` serve para retornar os pacotes TCP SYN. Na imagem 5, na coluna REASON é mostrado quais portas com os seus respectivos serviços retornaram algum resposta.
 - O parâmetro `-v` serve para retornar as ações do nmap de modo verboso.
@@ -53,7 +53,7 @@ Alem disso foi gerado 3 arquivos, `saidanmap.gnmap`, `saidanmap.nmap` e `saidanm
 (Apresentação) Crie um comando nmap com opções diferentes das usadas nas questões
 anteriores e explique a saída obtida pelo seu comando.
 
-<img src=question_4.png>
+<img src="images/question_4.png">
 
 - O parâmetro `--traceroute` mostra todos os saltos e hosts passados até o alvo.
 
@@ -84,7 +84,7 @@ Execute o comando: `nikto -host http://10.1.2.6/WackoPicko/ –o nikto.html–Fo
 
 **a. Copie e cole screenshots (pedaços) de telas obtidas na execução do comando.**<br/>
 
-<image src="question_6_nikto.png">
+<image src="images/question_6_nikto.png">
 
 **b. Explique o que mais chamou sua atenção na saída obtida. Explique também alguma vulnerabilidade encontrada nessa aplicação (WackoPicko) que consta no relatório do arquivo muti.html.**
 
@@ -96,7 +96,7 @@ O que mais nos chamou a atenção foram 2 pontos:<br/>
 
 Sobre as vulnerabilidades, o nikto retornou o arquivo `nikto.html` contendo todas as vulnerabilidades encontrada:<br/>
 
-<image src="question_6.png">
+<image src="images/question_6.png">
 
 Nesta vulnerabilidade da imagem acima é notável observar que através de uma requisição HTTP GET é possível ter acesso privilegiado na página sem necessitar de autenticação.
 
@@ -128,7 +128,7 @@ Outro ponto importante sobre esta vulnerabilidade é que o  problema de XSS é o
 abra  o  browser da  sua  máquina  real  ou  na  Kali  Linux  no  site http://IP da Kali/mutillidae/ e clique em Login (ver figura 5).
 No campo Username, digite a string ‘or1=1 --(tem  espaço  no  final,  depois  dos  tracinhos). O  campo Password  pode  ficar  em branco. Copie e cole a tela do seu experimento.**
 
-<image src="question_8.png">
+<image src="images/question_8.png">
 
 
 **b. Explique  o  resultado  obtido  e  a  vulnerabilidade  explorada  no  experimento  (pesquise  no documento do TOP 10 da OWASP).**
@@ -153,7 +153,7 @@ Segundo o documento do TOP 10 da OWASP, o sql injection pode resultar em perda d
 
 **b. Copie e cole um screenshot da execução de um experimento.**
 
-<image src="question_9.png">
+<image src="images/question_9.png">
 
 
 **c. O que pode ser feito para impedir a exploração dessa vulnerabilidade?**
@@ -174,7 +174,7 @@ O Shodan é um scanner que encontra dispositivos conectados pela internet. O Sho
 **b. (Apresentação) Faça o registro no site, pesquise e liste algum dispositivo IoT que você encontrou.**<br/>
 Na figura abaixo, segue uma list com 4 cameras IP com acesso livre
 
-<image src="question_12.png">
+<image src="images/question_12.png">
 
 
 ### Questão 13.
@@ -194,7 +194,7 @@ Um ataque poderia ser o desligamento da câmera num período propício ou senão
 ### Questão 14.
 Copie e cole o screenshot da sua tela ao realizar o experimento anterior. Depois, explique o experimento:<br/>
 
-<image src="question_14.png">
+<image src="images/question_14.png">
 
 **a. O que é o ataque do dicionário?**<br/>
 É um ataque que utiliza um banco de dados com logins e senhas para tentar descobrir os dados da vítima através da força bruta.
@@ -230,7 +230,7 @@ em um ataque, fornecendo informações sobre a vítima.
 - Comando `getsystem`: torna possível obter informações do sistema da vítima.
 - Comando `clearev`: faz o wipe das informações de acessos (rastros)
 
-<image src="question_15.png">
+<image src="images/question_15.png">
 
 
 ### Referências:
