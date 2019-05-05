@@ -29,22 +29,31 @@ import java.util.*;
 
 public class Cert {
     public static X509Certificate makeV1Certificate(PrivateKey caSignerKey, PublicKey caPublicKey)
-            throws GeneralSecurityException, IOException, OperatorCreationException {
+            throws GeneralSecurityException,
+                   IOException,
+                   OperatorCreationException {
         X509v1CertificateBuilder v1CertBldr = new JcaX509v1CertificateBuilder(
-                new X500Name("CN=Issuer CA"),
-                BigInteger.valueOf(System.currentTimeMillis()),
-                new Date(System.currentTimeMillis() - 1000L * 5),
-                new Date(System.currentTimeMillis() + ExValues.THIRTY_DAYS),
-                new X500Name("CN=Issuer CA"),
-                caPublicKey);
+                                new X500Name("CN=Issuer CA"),
+                                BigInteger.valueOf(System.currentTimeMillis()),
+                                new Date(System.currentTimeMillis() - 1000L * 5),
+                                new Date(System.currentTimeMillis() + ExValues.THIRTY_DAYS),
+                                new X500Name("CN=Issuer CA"),
+                                caPublicKey);
 
-        JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder("SHA384withECDSA").setProvider("BCFIPS");
+        JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder("SHA384withECDSA").
+                                                    setProvider("BCFIPS");
 
-        return new JcaX509CertificateConverter().setProvider("BCFIPS").getCertificate(v1CertBldr.build(signerBuilder.build(caSignerKey)));
+        return new JcaX509CertificateConverter().
+                   setProvider("BCFIPS").
+                   getCertificate(v1CertBldr.
+                                  build(signerBuilder.
+                                          build(caSignerKey)));
     }
 
     public static X509Certificate makeV1RsaCertificate(PrivateKey caSignerKey, PublicKey caPublicKey)
-            throws GeneralSecurityException, IOException, OperatorCreationException {
+            throws GeneralSecurityException,
+                   IOException,
+                   OperatorCreationException {
         X509v1CertificateBuilder v1CertBldr = new JcaX509v1CertificateBuilder(
                 new X500Name("CN=Issuer CA"),
                 BigInteger.valueOf(System.currentTimeMillis()),
@@ -59,7 +68,9 @@ public class Cert {
     }
 
     public static X509Certificate makeV3CACertificate(X509Certificate caCertificate, PrivateKey caPrivateKey, PublicKey eePublicKey)
-            throws GeneralSecurityException, CertIOException, OperatorCreationException {
+            throws GeneralSecurityException,
+                   CertIOException,
+                   OperatorCreationException {
         //
         // create the certificate - version 3
         //
@@ -92,11 +103,19 @@ public class Cert {
 
         JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder("SHA384withECDSA").setProvider("BCFIPS");
 
-        return new JcaX509CertificateConverter().setProvider("BCFIPS").getCertificate(v3CertBldr.build(signerBuilder.build(caPrivateKey)));
+        return new JcaX509CertificateConverter().
+                   setProvider("BCFIPS").
+                   getCertificate(v3CertBldr.
+                                  build(signerBuilder.
+                                          build(caPrivateKey)));
     }
 
-    public static X509Certificate makeV3Certificate(X509Certificate caCertificate, PrivateKey caPrivateKey, PublicKey eePublicKey)
-            throws GeneralSecurityException, CertIOException, OperatorCreationException {
+    public static X509Certificate makeV3Certificate(X509Certificate caCertificate,
+                                                    PrivateKey caPrivateKey,
+                                                    PublicKey eePublicKey)
+                                                                        throws GeneralSecurityException,
+                                                                                CertIOException,
+                                                                                OperatorCreationException {
         //
         // create the certificate - version 3
         //
@@ -129,10 +148,16 @@ public class Cert {
 
         JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder("SHA384withECDSA").setProvider("BCFIPS");
 
-        return new JcaX509CertificateConverter().setProvider("BCFIPS").getCertificate(v3CertBldr.build(signerBuilder.build(caPrivateKey)));
+        return new JcaX509CertificateConverter().
+                setProvider("BCFIPS").
+                                getCertificate(v3CertBldr.
+                                                        build(signerBuilder.
+                                                                            build(caPrivateKey)));
     }
 
-    public static X509Certificate makeRsaTspCertificate(X509Certificate caCertificate, PrivateKey caPrivateKey, PublicKey eePublicKey)
+    public static X509Certificate makeRsaTspCertificate(X509Certificate caCertificate,
+                                                        PrivateKey caPrivateKey,
+                                                        PublicKey eePublicKey)
             throws GeneralSecurityException, CertIOException, OperatorCreationException {
         //
         // create the certificate - version 3
@@ -171,7 +196,11 @@ public class Cert {
 
         JcaContentSignerBuilder signerBuilder = new JcaContentSignerBuilder("SHA384withRSA").setProvider("BCFIPS");
 
-        return new JcaX509CertificateConverter().setProvider("BCFIPS").getCertificate(v3CertBldr.build(signerBuilder.build(caPrivateKey)));
+        return new JcaX509CertificateConverter().
+                   setProvider("BCFIPS").
+                   getCertificate(v3CertBldr.
+                                  build(signerBuilder.
+                                          build(caPrivateKey)));
     }
 
     public static X509CRL makeV2Crl(X509Certificate caCert, PrivateKey caPrivateKey, X509Certificate revokedCertificate)
@@ -192,13 +221,17 @@ public class Cert {
                 false,
                 extUtils.createAuthorityKeyIdentifier(caCert.getPublicKey()));
 
-        X509CRLHolder crl = crlGen.build(new JcaContentSignerBuilder("SHA384withECDSA").setProvider("BCFIPS").build(caPrivateKey));
+        X509CRLHolder crl = crlGen.build(new JcaContentSignerBuilder("SHA384withECDSA").
+                                            setProvider("BCFIPS").
+                                            build(caPrivateKey));
 
         return new JcaX509CRLConverter().setProvider("BCFIPS").getCRL(crl);
     }
 
     public static OCSPReq makeOcspRequest(X509Certificate caCert, X509Certificate certToCheck)
-            throws OCSPException, OperatorCreationException, CertificateEncodingException {
+            throws OCSPException,
+                   OperatorCreationException,
+                   CertificateEncodingException {
         DigestCalculatorProvider digCalcProv = new JcaDigestCalculatorProviderBuilder().setProvider("BCFIPS").build();
 
         //
@@ -217,7 +250,9 @@ public class Cert {
     }
 
     public static OCSPResp makeOcspResponse(X509Certificate caCert, PrivateKey caPrivateKey, OCSPReq ocspReq)
-            throws OCSPException, OperatorCreationException, CertificateEncodingException {
+            throws OCSPException,
+                   OperatorCreationException,
+                   CertificateEncodingException {
         DigestCalculatorProvider digCalcProv = new JcaDigestCalculatorProviderBuilder().setProvider("BCFIPS").build();
         BasicOCSPRespBuilder respGen = new JcaBasicOCSPRespBuilder(caCert.getPublicKey(), digCalcProv.get(RespID.HASH_SHA1));
 
@@ -237,7 +272,9 @@ public class Cert {
     }
 
     public static boolean isGoodCertificate(OCSPResp ocspResp, X509Certificate caCert, X509Certificate eeCert)
-            throws OperatorCreationException, OCSPException, CertificateEncodingException {
+            throws OperatorCreationException,
+                   OCSPException,
+                   CertificateEncodingException {
         DigestCalculatorProvider digCalcProv = new JcaDigestCalculatorProviderBuilder().setProvider("BCFIPS").build();
 
         if (ocspResp.getStatus() == OCSPRespBuilder.SUCCESSFUL) {
@@ -259,13 +296,9 @@ public class Cert {
 
         certchain.add(eeCert);
         certchain.add(caCert);
-
         CertPath certPath = CertificateFactory.getInstance("X.509", "BCFIPS").generateCertPath(certchain);
-
         Set<TrustAnchor> trust = new HashSet<TrustAnchor>();
-
         trust.add(new TrustAnchor(taCert, null));
-
         CertPathValidator certPathValidator = CertPathValidator.getInstance("PKIX", "BCFIPS");
 
         PKIXParameters param = new PKIXParameters(trust);
@@ -307,7 +340,10 @@ public class Cert {
     }
 
     public static void main(String[] args)
-            throws GeneralSecurityException, IOException, OperatorCreationException, OCSPException {
+            throws GeneralSecurityException,
+                   IOException,
+                   OperatorCreationException,
+                   OCSPException {
         Setup.installProvider();
 
         KeyPair taKeyPair = EC.generateKeyPair();
@@ -327,21 +363,16 @@ public class Cert {
 
         // this will throw an exception in case of failure to verify
         taCrl.verify(taCert.getPublicKey());
-
         X509CRL caCrl = makeV2Crl(caCert, caKeyPair.getPrivate(), eeCert);
-
         caCrl.verify(caCert.getPublicKey());
 
         System.err.println("caCert CRL verified");
-
         System.err.println(taCrl.getRevokedCertificate(eeCert));
 
         OCSPReq ocspReq = makeOcspRequest(taCert, eeCert);
-
         OCSPResp ocspResp = makeOcspResponse(taCert, taKeyPair.getPrivate(), ocspReq);
 
         System.err.println(isGoodCertificate(ocspResp, taCert, eeCert));
-
         System.err.println(validateCertPath(taCert, caCert, eeCert));
 
         try {

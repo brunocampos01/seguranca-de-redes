@@ -91,13 +91,15 @@ openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt
 ## 2 parte – Criptografia em Java
 
 1. **(ENTREGAR) (Dupla) Abra o projeto2CodigoLivro e teste o seu funcionamento. Responda:**
-- **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
+   - **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
 Algoritmo AES no modo CBC. _Symmetric encryption example with padding and CBC using AES_
 
-- **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
+  - **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
 Gera uma chave secreta.
 
-- **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**<br/>
+  - **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
+
+
 `init`: é o método que inicia o "Cipher", cifra, recebendo o parâmetro o tipo de operação a cifrar ou decifrar `opmode` alem de a chave de criptografia e o IV.
 Fonte: https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html#init(int,%20java.security.Key,%20java.security.AlgorithmParameters)
 
@@ -114,24 +116,20 @@ Fonte: https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html#doFina
 Inicialmente iremos testar apenas a função de decifragem. Use o projeto3Aes para auxiliar a responder as questões. 
 Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos codificados em hexa) e o seu objetivo é recuperar o texto plano/texto decifrado. A resposta de cada questão é o texto decifrado (frase em português).**
 
-- **a)**
+ - **a)**
    - Chave CBC: c38a0d7bdd11e031c24e4895913393f9
    - Texto cifrado em modo CBC (IV+texto cifrado):
 b90d84b82b283d5f783b9721f5f8bd1fb170b4319815f1a4fdbaff6f052f6e58a06d0200f28b1d333d8e3f11fcafef750122226c1bcea8d69416f5a15e4901b3c2fb5c33507139fe88f18c72fb0c435d
 **Resposta-texto decifrado:**<br/>
+_Modo CBC com PKCS5Padding do AES. IV nao foi cifrado._
 
-Modo CBC com PKCS5Padding do AES. IV nao foi cifrado.
-
-
-
-
-- **b)**
+ - **b)**
     - Chave CTR: abd95641ecb005d475496cd0bda4555f
     - Texto cifrado em modo CTR (IV+texto cifrado):
 7182eb9d1fd3d9ed3ae1594b3cd3b02bf4667cd27c5e0a01dc2e66f53480e5fa249269e1bd17e7e066824dcab22be4ccff41480a139eae1d390e1dd78548d7bb82841d88ae50fd4ea52727
 <br/>
-**Resposta-texto decifrado:**
-
+**Resposta-texto decifrado:**<br/>
+_Modo CRT. Melhor sortear IV e chave com PRNG criptografico._
 
 
 3. **No código testeModifica, faça:**
@@ -143,7 +141,8 @@ Modo CBC com PKCS5Padding do AES. IV nao foi cifrado.
  ```java
  cipherText[11] ^= '0' ^ '9';
  ```
- <br/>
+
+
 Na posição 11 do array `cipherText[]` é atribuído, através de um XOR, (primeiro algarismo de 0000100) com o mesmo valor `'0'`, redefinindo os bits. Em seguida é feito outro XOR com `'9'` para **adulterar** o valor da transferência de 0000100 para 9000100.
 
 
@@ -227,6 +226,7 @@ Basicamente o código na classe `KeyStrAdap.java` guarda chaves secretas (simét
   - **b) Guardar a chave gerada e outros parâmetros necessários (talvez o IV) em um keystore Java. Esse keystore será o cofre de chaves único da empresa que guardará as chaves e/ou parâmetros criptográficos como o IV usados nas conversas entre os funcionários;**
   - **c) Alice cifra a msg usando a chave e o IV e envia para Bob (via chamada de método). Alice e Bob podem ser objetos funcionários do sistema. Msg original e msg cifrada devem ser escritas na tela.**
 <br/>
+
 Ao receber a msg, Bob deve:
   - **a) Obter a chave simétrica e/ou parâmetros como o IV usados para criptografar a msg que estão guardados no cofre da empresa (keystore Java). Bob deve escrever na tela a chave e IV obtidos do cofre;**
   - **b) Escrever na tela a msg cifrada recebida;**
@@ -237,13 +237,7 @@ O arquivo keystore Java é cifrado por padrão. A “senha” usada no keystore 
 de derivação.
 
 
-
-
-
-
-
-
-
+<br/>
 
 13. **(Questão desafio, não é obrigatória a entrega) Um atacante intercepta o seguinte texto cifrado
 (codificado em hexa):

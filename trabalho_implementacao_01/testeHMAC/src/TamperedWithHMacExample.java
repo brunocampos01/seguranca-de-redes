@@ -14,9 +14,7 @@ import java.security.Security;
  * Tampered message with HMac, encryption AES in CTR mode
  */
 public class TamperedWithHMacExample {
-    public static void main(
-            String[] args)
-            throws Exception {
+    public static void main(String[] args) throws Exception {
         // Instanciar um novo Security provider
         int addProvider;
         addProvider = Security.addProvider(new BouncyCastleFipsProvider());
@@ -33,11 +31,9 @@ public class TamperedWithHMacExample {
         System.out.println("Texto original : " + input);
 
         // etapa de cifragem
-
         cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
 
         byte[] cipherText = new byte[cipher.getOutputSize(input.length() + hMac.getMacLength())];
-
         int ctLength = cipher.update(Utils.toByteArray(input), 0, input.length(), cipherText, 0);
 
         hMac.init(hMacKey);
@@ -46,13 +42,10 @@ public class TamperedWithHMacExample {
         ctLength += cipher.doFinal(hMac.doFinal(), 0, hMac.getMacLength(), cipherText, ctLength);
 
         // etapa de falsicacao - mudando o texto cifrado!
-
         cipherText[11] ^= '0' ^ '9';
 
         // tem troca de hash ?
-
         // ?
-
         // etapa de decifragem e verificacao do MAC
 
         cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);

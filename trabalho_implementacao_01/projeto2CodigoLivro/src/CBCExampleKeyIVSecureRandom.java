@@ -55,11 +55,8 @@ public class CBCExampleKeyIVSecureRandom {
         cipher.init(Cipher.ENCRYPT_MODE, aesKey, ivSpec);
 
         byte[] cipherText = new byte[cipher.getOutputSize(iv.length + input.length)];
-
         int ctLength = cipher.update(iv, 0, iv.length, cipherText, 0);
-
         ctLength += cipher.update(input, 0, input.length, cipherText, ctLength);
-
         ctLength += cipher.doFinal(cipherText, ctLength);
 
         System.out.println("cipher: " + Utils.toHex(cipherText, ctLength) + " bytes: " + ctLength);
@@ -68,16 +65,13 @@ public class CBCExampleKeyIVSecureRandom {
         cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
 
         byte[] buf = new byte[cipher.getOutputSize(ctLength)];
-
         int bufLength = cipher.update(cipherText, 0, ctLength, buf, 0);
-
         bufLength += cipher.doFinal(buf, bufLength);
 
         // remove the iv from the start of the message
         byte[] plainText = new byte[bufLength - iv.length];
 
         System.arraycopy(buf, iv.length, plainText, 0, plainText.length);
-
         System.out.println("plain : " + Utils.toHex(plainText, plainText.length) + " bytes: " + plainText.length);
     }
 }

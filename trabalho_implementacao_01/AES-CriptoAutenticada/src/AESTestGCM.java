@@ -1,10 +1,3 @@
-/**
- * Código adaptado de várias fontes:
- * https://github.com/bcgit/bc-java/blob/master/prov/src/test/java/org/bouncycastle/jce/provider/test/AESTest.java
- * GCMTest.java da BouncyCastle
- * Versão Agosto 2017
- */
-
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.engines.AESEngine;
 import org.bouncycastle.crypto.modes.GCMBlockCipher;
@@ -25,7 +18,6 @@ import java.util.logging.Logger;
 //import org.apache.commons.codec.DecoderException;
 //import org.apache.commons.codec.binary.Hex;
 public class AESTestGCM {
-
     private static final int MAC_SIZE = 128;
 
     public AESTestGCM() {
@@ -45,7 +37,6 @@ public class AESTestGCM {
 
     // Teste do codigo original do site
     private void gcmTest() throws Exception {
-
         // Test Case 15 from McGrew/Viega
         //  chave (K)
         String pK = "feffe9928665731c6d6a8f9467308308feffe9928665731c6d6a8f9467308308";
@@ -77,10 +68,8 @@ public class AESTestGCM {
 
         Key key;
         Cipher in, out;
-
         in = Cipher.getInstance("AES/GCM/NoPadding", "BC");
         out = Cipher.getInstance("AES/GCM/NoPadding", "BC");
-
         key = new SecretKeySpec(K, "AES");
 
         in.init(Cipher.ENCRYPT_MODE, key, new IvParameterSpec(N));
@@ -90,9 +79,7 @@ public class AESTestGCM {
         if (!areEqual(enc, C)) {
             fail("ciphertext doesn't match in GCM");
         }
-
         out.init(Cipher.DECRYPT_MODE, key, new IvParameterSpec(N));
-
         byte[] dec = out.doFinal(C);
 
         if (!areEqual(dec, P)) {
@@ -198,9 +185,9 @@ public class AESTestGCM {
 
     }
 
-    public static void main(
-            String[] args) {
+    public static void main String[] args) {
         System.out.println("Teste de GCM com AES");
+
         int addProvider1 = Security.addProvider(new BouncyCastleProvider());
         //int addProvider2 = Security.addProvider(new BouncyCastleFipsProvider());
         AESTestGCM obj = new AESTestGCM();

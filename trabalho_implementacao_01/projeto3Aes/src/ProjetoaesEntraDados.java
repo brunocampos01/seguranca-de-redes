@@ -24,10 +24,10 @@ public class ProjetoaesEntraDados {
         //cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
         // Gera uma chave AES
-        System.out.print("Gerando chave \t-> ");
-        KeyGenerator sKenGen = KeyGenerator.getInstance("AES");
-        aesKey = sKenGen.generateKey();
-        System.out.println("Chave AES \t= " + Hex.encodeHexString(aesKey.getEncoded()));
+//        System.out.print("Gerando chave \t-> ");
+//        KeyGenerator sKenGen = KeyGenerator.getInstance("AES");
+//        aesKey = sKenGen.generateKey();
+//        System.out.println("Chave AES \t= " + Hex.encodeHexString(aesKey.getEncoded()));
 
         // Chave na String
          String chave1 = "abd95641ecb005d475496cd0bda4555f";
@@ -38,8 +38,6 @@ public class ProjetoaesEntraDados {
          }
          secretKey = new SecretKeySpec(key, "AES");
 
-
-
         // Gerando o iv com SecureRandom
         System.out.print("Gerando IV \t-> ");
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
@@ -49,14 +47,13 @@ public class ProjetoaesEntraDados {
         System.out.println("IV \t= " + Hex.encodeHexString(iv));
 
          // IV na String
-         String iv1 = "2e4d285ae4837d9c746fc36a18dc2758";
-
-         try { iv = Hex.decodeHex(iv1.toCharArray()); } catch
-         (DecoderException ex) {
-         Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE,
-         null, ex); }
-         ivSpec = new IvParameterSpec(iv);
-        System.out.println(ivSpec);
+//         String iv1 = "abd95641ecb005d475496cd0bda4555f";
+//
+//         try { iv = Hex.decodeHex(iv1.toCharArray()); } catch
+//         (DecoderException ex) {
+//         Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex); }
+//         ivSpec = new IvParameterSpec(iv);
+//         System.out.println(ivSpec);
 
     } // fim inicia
 
@@ -71,10 +68,14 @@ public class ProjetoaesEntraDados {
             //cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
             final String encryptedString = Hex.encodeHexString(cipher.doFinal(strToEncrypt.getBytes()));
             return encryptedString;
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+        } catch (NoSuchAlgorithmException |
+                NoSuchPaddingException |
+                InvalidKeyException |
+                InvalidAlgorithmParameterException |
+                IllegalBlockSizeException |
+                BadPaddingException e) {
         }
         return null;
-
     }
 
     public String decrypt(String dec) throws  NoSuchAlgorithmException,
@@ -82,8 +83,8 @@ public class ProjetoaesEntraDados {
                                               NoSuchProviderException {
         try {
             inicia();
-            cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
-            //cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+            //cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
             byte[] embytes = {};
 
             try {
@@ -91,9 +92,7 @@ public class ProjetoaesEntraDados {
             } catch (DecoderException ex) {
                 Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
             }
-
             String decryptedString = new String(cipher.doFinal(embytes));
-
             return decryptedString;
 
         } catch (InvalidKeyException |
@@ -106,11 +105,11 @@ public class ProjetoaesEntraDados {
     }
 
     public static void main(String args[]) throws
-            InvalidKeyException,
-            InvalidAlgorithmParameterException,
-            NoSuchAlgorithmException,
-            NoSuchPaddingException,
-            NoSuchProviderException {
+                                                InvalidKeyException,
+                                                InvalidAlgorithmParameterException,
+                                                NoSuchAlgorithmException,
+                                                NoSuchPaddingException,
+                                                NoSuchProviderException {
         ProjetoaesEntraDados obj = new ProjetoaesEntraDados();
 
 //        String paraCifrar;
@@ -124,7 +123,6 @@ public class ProjetoaesEntraDados {
 //        System.out.println("Mensagem cifrada = " + cifrada);
 //        String decifrada = obj.decrypt(cifrada);
 //        System.out.println("Mensagem decifrada = " + decifrada);
-
 
         String paraDecifrar;
 
