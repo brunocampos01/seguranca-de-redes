@@ -2,7 +2,7 @@
 OpenSSL + Exercícios de criptografia simétrica, hash, MAC, PBKDF e Criptografia Autenticada em Java
 
 #### Alunos
-Bruno Aurélio Rôzza de Moura Campos (14104255)
+Bruno Aurélio Rôzza de Moura Campos (14104255)<br/>
 Caio Cargnin Cardoso (09138003)
 
 #### Matéria
@@ -19,20 +19,19 @@ openssl enc -aes-128-ctr –in t1.txt –out t1.aes -p
 ```
 <img src="imagens/1-a.png">
 
- - **a) Qual chave foi usada para cifrar o arquivo?**
+ - **a) Qual chave foi usada para cifrar o arquivo?**<br/>
 key=4CDF109430C8BB4E0DFD4B264C4291A8
  
- - **b) Qual IV foi usado?**
+ - **b) Qual IV foi usado?**<br/>
 iv =FA458B36C3A0C9B8CEE0B7F7310FBAF5
 
- - **c) Como foram gerados a chave e o IV?**
+ - **c) Como foram gerados a chave e o IV?**<br/>
  Tanto a chave quanto o IV foram gerados a partir da senha inserida (root). Um password é exigido como primeiro passo após executar o comando. Como ultimo argumento do comando foi inserido `-p` para exibir o iv e key.
 
- - **d) Onde ficam guardados a chave e o IV?**
+ - **d) Onde ficam guardados a chave e o IV?**<br/>
 A key e o IV são persistidos no arquivo `t1.aes` criado a partir do comando `-out t1.aes`
 
-2. **(ENTREGAR) Agora, decifre o arquivo t1.aes.**
-Use o comando: 
+2. **(ENTREGAR) Agora, decifre o arquivo t1.aes.Use o comando:**
 ```bash
 openssl enc -aes-128-ctr -d -in t1.aes -p
 ```
@@ -92,13 +91,13 @@ openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt
 ## 2 parte – Criptografia em Java
 
 1. **(ENTREGAR) (Dupla) Abra o projeto2CodigoLivro e teste o seu funcionamento. Responda:**
-- **1.1. Qual algoritmo é usado no código? Em qual modo?**
+- **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
 Algoritmo AES no modo CBC. _Symmetric encryption example with padding and CBC using AES_
 
-- **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**
+- **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
 Gera uma chave secreta.
 
-- **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
+- **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**<br/>
 `init`: é o método que inicia o "Cipher", cifra, recebendo o parâmetro o tipo de operação a cifrar ou decifrar `opmode` alem de a chave de criptografia e o IV.
 Fonte: https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html#init(int,%20java.security.Key,%20java.security.AlgorithmParameters)
 
@@ -119,24 +118,19 @@ Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos cod
    - Chave CBC: c38a0d7bdd11e031c24e4895913393f9
    - Texto cifrado em modo CBC (IV+texto cifrado):
 b90d84b82b283d5f783b9721f5f8bd1fb170b4319815f1a4fdbaff6f052f6e58a06d0200f28b1d333d8e3f11fcafef750122226c1bcea8d69416f5a15e4901b3c2fb5c33507139fe88f18c72fb0c435d
-**Resposta-texto decifrado:**
+**Resposta-texto decifrado:**<br/>
+
+Modo CBC com PKCS5Padding do AES. IV nao foi cifrado.
+
+
+
 
 - **b)**
     - Chave CTR: abd95641ecb005d475496cd0bda4555f
     - Texto cifrado em modo CTR (IV+texto cifrado):
 7182eb9d1fd3d9ed3ae1594b3cd3b02bf4667cd27c5e0a01dc2e66f53480e5fa249269e1bd17e7e066824dcab22be4ccff41480a139eae1d390e1dd78548d7bb82841d88ae50fd4ea52727
-
+<br/>
 **Resposta-texto decifrado:**
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -149,19 +143,20 @@ b90d84b82b283d5f783b9721f5f8bd1fb170b4319815f1a4fdbaff6f052f6e58a06d0200f28b1d33
  ```java
  cipherText[11] ^= '0' ^ '9';
  ```
+ <br/>
 Na posição 11 do array `cipherText[]` é atribuído, através de um XOR, (primeiro algarismo de 0000100) com o mesmo valor `'0'`, redefinindo os bits. Em seguida é feito outro XOR com `'9'` para **adulterar** o valor da transferência de 0000100 para 9000100.
 
 
 4. **No código teste HASH, faça:**
- - **4.1. Explique como o hash sem chave é usado nesse exemplo;**
+ - **4.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
 É criado um hash com o algoritmo SHA256 a partir de uma menssagem.
 Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
 
- - **4.2. O que significa o valor “false” na verificação do hash?**
+ - **4.2. O que significa o valor “false” na verificação do hash?**<br/>
  No código da classe `TamperedWithDigestExample.java` não há estrutura de seleção para verificar o hash, neste caso se o hash retornar vazio, o objeto MessageDigest pode lançar uma excessão do tipo `DigestException`.
  Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
 
-5. **Sobre hash de senhas, leia o material disponível do site https://crackstation.net/hashing-security.htm e escreva um resumo sobre o que é “certo” e o que é “errado” ao criar um arquivo com hashes de senhas. Projete uma ideia de formato seguro de arquivo de senhas fundamentado/baseado nas boas práticas descritas no material. Você deve criar o seu formato e deve descrever razões das escolhas feitas para o seu formato.**
+5. **Sobre hash de senhas, leia o material disponível do site https://crackstation.net/hashing-security.htm e escreva um resumo sobre o que é “certo” e o que é “errado” ao criar um arquivo com hashes de senhas. Projete uma ideia de formato seguro de arquivo de senhas fundamentado/baseado nas boas práticas descritas no material. Você deve criar o seu formato e deve descrever razões das escolhas feitas para o seu formato.**<br/>
 
 **Soluções**<br/>
 A melhor maneira de proteger senhas é empregar hashing de senha com _salt_ para garantir uma persistencia segura das senhas de uruários. Já sobre a implementação de código de hash de senha é sempre recomendado uma implementações já prontas
@@ -180,7 +175,7 @@ A senha do usuário é hello mas com um sal longo, dificialmente será repetido 
 
 
 6. **(ENTREGAR) No código testeModificaETrocaHash, faça:**
- - **6.1. Explique como o hash sem chave é usado nesse exemplo;**
+ - **6.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
  Na declaração da variável `MessageDigest hash = MessageDigest.getInstance("SHA256", "BCFIPS");` é definido um objeto do tipo `MessageDigest` o qual possui o método `getInstance()`. Este método é responsável por retornar um objeto MessageDigest que implementa o algoritmo especificado.
  Depois da declaração, o hash invoca o método `update()` para atualizar o valor da menssagem usando um byte específico. Depois esse hash é passado como parâmentro no método `doFinal()` de uma cifra e invoca o método `digest()` para gerar o resumo da mensagem,
  Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
@@ -205,39 +200,38 @@ Fonte: https://www.tutorialspoint.com/java_cryptography/java_cryptography_messag
 
 **Obs: para funcionar este código você deve descompactar o arquivo jce_policy-8 que está dentro do diretório deste projeto. LEIA o README para saber para onde você deve copiar os arquivos descompactados. Só fazendo isso você conseguirá criar o AES com tamanhos de chave maiores. Se você tiver o JAVA 7, você deve baixar o arquivo na Internet: procure por Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7.**
 
- - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**
+ - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**<br/>
  Este método basicamente testa usando GCMBlockCipher da BouncyCastle, não necessita de parâmetros e não possui retorno `void`. Durante sua execução, ele é responsável por instanciar as seguintes variáveis:
  chave `byte[] K`, texto plano `byte[] P`, IV `byte[] N`, tag `String T`, texto cifrado `byte[] C` e mensagem de entrada `String input`.
  Na sequencia, ele cifra, criando um objeto do tipo `GCMBlockCipher gcm` e depois passa os parâmetros para ser feito a cifragem da mensagem.
  Após a cifragem é feita a mudança do texto cifrado usando 2 XOR sequencias. Com a mensagem alterada, é feita a decifragem e os valores são exibidos.
 
- - **8.2. Como as tags (MACs) foram usadas para identificar a modificação no texto cifrado?**
+ - **8.2. Como as tags (MACs) foram usadas para identificar a modificação no texto cifrado?**<br/>
 O GCMBlockCipher checa o MAC do gcm `byte[] encT1 = gcm.getMac();`. Desta forma é possível saber que a mensagem foi adulterada.
 
- - **8.3. A detecção da modificação foi feita de forma manual ou automática no código? Explique.**
+ - **8.3. A detecção da modificação foi feita de forma manual ou automática no código? Explique.**<br/>
  A detecção foi realizada de modo automático através do método `getMac()` que pertence ao objeto `gcm`, sendo que este método é implementado na classe `GCMBlockCipher`
 
 11. **(ENTREGAR) O projeto testeKeyStorev2 tem exemplo de uso do KeyStore do Java. Explique como funciona o código exemplo. A figura 1 mostra exemplo de estrutura do keystore Java. O exemplo de código na classe `KeyStrAdap.java` demonstra o uso do keystore do tipo BCFKS (keystore da BouncyCastle padrão FIPS). Execute o código da classe KeyStrAdap.java.
 Texto da documentação: “The BCFKS key store is designed to be FIPS compliant. It is available in approved-mode operation and is also capable of storing some secret key types in addition to public/private keys and certificates. The BCFKS key store uses PBKDF2 with HMAC SHA512 for password to key conversion and AES CCM for encryption.”**
-
+<br/>
 Basicamente o código na classe `KeyStrAdap.java` guarda chaves secretas (simétricas), certificados de chaves públicas e chaves privadas. Para isso é implementado vários métodos, començando pelo 
    - `storeSecretKey()`: cria um objeto `KeyStore`, carrega o cofre de senhas em modo de steam e persiste uma chave a partir dos parâmetros `alias, secretKey, keyPass` 
    - `storeCertificate()`:  cria um objeto `KeyStore` carrega o cofre de senhas em modo de steam e persiste um certificado a partir dos parâmetros `alias, trustedCert`
    - `storePrivateKey`: cria um objeto `KeyStore` carrega o cofre de senhas em modo de steam e persiste uma _storePrivate_ a partir dos parâmetros `alias, eeKey, keyPass, eeCertChain`
    - `printKeyStore`: cria um objeto `KeyStore` carrega o cofre de senhas em modo de steam e imprime o resultado a partir do parâmetro recebido em `storePassword`.
 
-
 12. **(ENTREGAR e APRESENTAR - 50 % da nota desta tarefa) Você irá implementar um sistema de comunicação entre funcionários de um ambiente usando a criptografia simétrica autenticada, derivação de chave e um keystore Java.** 
 **Suponha um ambiente de uma empresa que tem os seguintes funcionários: Alice, Bob, Ana e Pedro. Alice define que quer conversar com Bob. Para conversar com Bob, Alice deve:**
  - **a) Gerar, de forma segura e correta, uma chave criptográfica e um IV usando mecanismos de derivação de chaves (PBKDF2 ou Argon2). Chave e IV devem ser escritos na tela;**
   - **b) Guardar a chave gerada e outros parâmetros necessários (talvez o IV) em um keystore Java. Esse keystore será o cofre de chaves único da empresa que guardará as chaves e/ou parâmetros criptográficos como o IV usados nas conversas entre os funcionários;**
   - **c) Alice cifra a msg usando a chave e o IV e envia para Bob (via chamada de método). Alice e Bob podem ser objetos funcionários do sistema. Msg original e msg cifrada devem ser escritas na tela.**
-
+<br/>
 Ao receber a msg, Bob deve:
   - **a) Obter a chave simétrica e/ou parâmetros como o IV usados para criptografar a msg que estão guardados no cofre da empresa (keystore Java). Bob deve escrever na tela a chave e IV obtidos do cofre;**
   - **b) Escrever na tela a msg cifrada recebida;**
   - **c) Decifrar a msg recebida e escrever a msg decifrada na tela.**
-
+<br/>
 NÃO É PERMITIDO: ter chaves e IV fixos e escritos no próprio código. Parâmetros devem ser guardados cifrados em arquivo (não podem ser guardados em texto plano). Não é permitido ter “passwords” no código-fonte.
 O arquivo keystore Java é cifrado por padrão. A “senha” usada no keystore deve ser gerada com método
 de derivação.
