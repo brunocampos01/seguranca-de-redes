@@ -1,45 +1,36 @@
 package testekeystore;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.Key;
-import java.security.KeyPair;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.PrivateKey;
-import java.security.Provider;
-import java.security.SecureRandom;
-import javax.crypto.SecretKey;
-import java.security.Security;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-import java.util.Enumeration;
-import javax.crypto.KeyGenerator;
-import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider;
 import org.apache.commons.codec.binary.Hex;
 import org.bouncycastle.crypto.CryptoServicesRegistrar;
 import org.bouncycastle.crypto.fips.FipsDRBG;
 import org.bouncycastle.crypto.util.BasicEntropySourceProvider;
+import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider;
 import org.bouncycastle.operator.OperatorCreationException;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.*;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import java.util.Enumeration;
 
 /**
  * Código para demonstrar o uso do keystore padrão FIPS da BouncyCastle Esse
  * keystore guarda chaves secretas (simétricas), certificados de chaves públicas e chaves privadas
- *
- * @author Carla
- * @version 2.0 - agosto de 2017
  */
 public class KeyStrAdap {
 
-    public static void storeSecretKey(String storeFilename, char[] storePassword, String alias, char[] keyPass, SecretKey secretKey)
-            throws GeneralSecurityException, IOException {
+    public static void storeSecretKey(String storeFilename,
+                                      char[] storePassword,
+                                      String alias,
+                                      char[] keyPass,
+                                      SecretKey secretKey) throws GeneralSecurityException,
+                                                                  IOException {
+
         KeyStore keyStore = KeyStore.getInstance("BCFKS", "BCFIPS");
         keyStore.load(new FileInputStream(storeFilename), storePassword);
         //keyStore.load(null, null);
@@ -48,8 +39,12 @@ public class KeyStrAdap {
         keyStore.store(new FileOutputStream(storeFilename), storePassword);
     }
 
-    public static void storeCertificate(String storeFilename, char[] storePassword, String alias, X509Certificate trustedCert)
-            throws GeneralSecurityException, IOException {
+    public static void storeCertificate(String storeFilename,
+                                        char[] storePassword,
+                                        String alias,
+                                        X509Certificate trustedCert) throws GeneralSecurityException,
+                                                                            IOException {
+
         KeyStore keyStore = KeyStore.getInstance("BCFKS", "BCFIPS");
         keyStore.load(new FileInputStream(storeFilename), storePassword);
         keyStore.setCertificateEntry(alias, trustedCert);
@@ -57,38 +52,52 @@ public class KeyStrAdap {
 
     }
 
-    public static void storePrivateKey(String storeFilename, char[] storePassword, String alias, char[] keyPass, PrivateKey eeKey, X509Certificate[] eeCertChain)
-            throws GeneralSecurityException, IOException {
+    public static void storePrivateKey(String storeFilename,
+                                       char[] storePassword,
+                                       String alias,
+                                       char[] keyPass,
+                                       PrivateKey eeKey,
+                                       X509Certificate[] eeCertChain) throws GeneralSecurityException,
+                                                                             IOException {
+
         KeyStore keyStore = KeyStore.getInstance("BCFKS", "BCFIPS");
         keyStore.load(new FileInputStream(storeFilename), storePassword);
         keyStore.setKeyEntry(alias, eeKey, keyPass, eeCertChain);
         keyStore.store(new FileOutputStream(storeFilename), storePassword);
     }
 
-    private static void printKeyStore(String storeFilename, char[] storePassword) throws NoSuchProviderException, KeyStoreException, IOException, NoSuchAlgorithmException, CertificateException {
+    private static void printKeyStore(String storeFilename,
+                                      char[] storePassword) throws NoSuchProviderException,
+                                                                   KeyStoreException,
+                                                                   IOException,
+                                                                   NoSuchAlgorithmException,
+                                                                   CertificateException {
+
         KeyStore keyStore = KeyStore.getInstance("BCFKS", "BCFIPS");
         keyStore.load(new FileInputStream(storeFilename), storePassword);
         System.out.println("KeyStore type: " + keyStore.getType());
         Enumeration<String> aliases = keyStore.aliases();
+
         while (aliases.hasMoreElements()) {
             String elem = aliases.nextElement();
-            if (keyStore.isKeyEntry(elem)) 
-                System.out.println("Chave = "+ elem);
-            else
-                if (keyStore.isCertificateEntry(elem)) {
-                    System.out.println("Certificado = "+elem);
-                    Certificate cert = keyStore.getCertificate(elem);
-                    System.out.println("Chave publica guardada no certificado:"+cert.getPublicKey());
-                    System.out.println("Tipo do certificado:"+cert.getType());
-                }
+
+            if (keyStore.isKeyEntry(elem))
+                System.out.println("Chave = " + elem);
+            else if (keyStore.isCertificateEntry(elem)) {
+                System.out.println("Certificado = " + elem);
+                Certificate cert = keyStore.getCertificate(elem);
+                System.out.println("Chave publica guardada no certificado:" + cert.getPublicKey());
+                System.out.println("Tipo do certificado:" + cert.getType());
+            }
         }
 
         //Provider prov = keyStore.getProvider();
         //System.out.println("Provider detais "+prov.getServices());
     }
 
-    public static void main(String[] args)
-            throws GeneralSecurityException, IOException, OperatorCreationException {
+    public static void main(String[] args) throws GeneralSecurityException,
+                                                  IOException,
+                                                  OperatorCreationException {
 
         // Install Provider FIPS
         Security.addProvider(new BouncyCastleFipsProvider());
@@ -107,7 +116,7 @@ public class KeyStrAdap {
          *
          * System.out.println("-------------------------------"); }
          */
-        
+
         // Criar o keystore no diretorio atual
         //KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
         KeyStore ks = KeyStore.getInstance("BCFKS", "BCFIPS");

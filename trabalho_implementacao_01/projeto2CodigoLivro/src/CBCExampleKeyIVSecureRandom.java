@@ -1,25 +1,22 @@
+import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider;
 
-import java.security.Key;
-import java.security.SecureRandom;
-import java.security.Security; // Incluido
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.spec.IvParameterSpec;
-import org.bouncycastle.jcajce.provider.BouncyCastleFipsProvider; // Incluido
+import java.security.Key;
+import java.security.SecureRandom;
+import java.security.Security;
 
 /**
  * Symmetric encryption example with padding and CBC using AES with the
  * initialization vector. Modificado para usar o AES.
  */
 public class CBCExampleKeyIVSecureRandom {
-
-    public static void main(
-            String[] args)
-            throws Exception {
+    public static void main(String[] args) throws Exception {
         byte[] input = new byte[]{
-            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
-            0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
-            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+                0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+                0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
 
         // Incluido: Instanciar um novo Security provider
         int addProvider = Security.addProvider(new BouncyCastleFipsProvider());
@@ -34,15 +31,13 @@ public class CBCExampleKeyIVSecureRandom {
         System.out.print("Gerando chave AES -> ");
         KeyGenerator sKenGen = KeyGenerator.getInstance("AES");
         Key aesKey = sKenGen.generateKey();
-        System.out.println("Chave AES = " + 
-                
-                Utils.toHex(aesKey.getEncoded()));
+        System.out.println("Chave AES = " + Utils.toHex(aesKey.getEncoded()));
 
         // Incluido: Gerando o iv com SecureRandom
-        
+
         //SecureRandom random = SecureRandom.getInstanceStrong();
         //System.out.println("Algoritmo no SecureRandom"+java.security.Security.getProperty( "securerandom.strongAlgorithms" ));
-        
+
         System.out.print("Gerando IV -> ");
         byte iv[] = new byte[16];
         SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
@@ -50,7 +45,7 @@ public class CBCExampleKeyIVSecureRandom {
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
         System.out.println("IV = " + Utils.toHex(iv));
 
-        
+
         // Instanciando cipher
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BCFIPS");
 

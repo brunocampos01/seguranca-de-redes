@@ -1,31 +1,24 @@
 package testekeystore;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.spec.ECGenParameterSpec;
-
-import javax.crypto.KeyAgreement;
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-
-//import bcfipsin100.util.ExValues;
 import org.bouncycastle.crypto.util.DERMacData;
 import org.bouncycastle.jcajce.AgreedKeyWithMacKey;
 import org.bouncycastle.jcajce.spec.UserKeyingMaterialSpec;
 import org.bouncycastle.util.Arrays;
 import org.bouncycastle.util.encoders.Hex;
 
+import javax.crypto.KeyAgreement;
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import java.io.IOException;
+import java.security.*;
+import java.security.spec.ECGenParameterSpec;
 
-public class EC
-{
+//import bcfipsin100.util.ExValues;
+
+
+public class EC {
     public static KeyPair generateKeyPair()
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyPairGenerator keyPair = KeyPairGenerator.getInstance("EC", "BCFIPS");
 
         keyPair.initialize(384);
@@ -34,8 +27,7 @@ public class EC
     }
 
     public static byte[] generateSignature(PrivateKey ecPrivate, byte[] input)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         Signature signature = Signature.getInstance("SHA384withECDSA", "BCFIPS");
 
         signature.initSign(ecPrivate);
@@ -46,8 +38,7 @@ public class EC
     }
 
     public static boolean verifySignature(PublicKey ecPublic, byte[] input, byte[] encSignature)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         Signature signature = Signature.getInstance("SHA384withECDSA", "BCFIPS");
 
         signature.initVerify(ecPublic);
@@ -58,8 +49,7 @@ public class EC
     }
 
     public static KeyPair generateKeyPairUsingCurveName(String curveName)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyPairGenerator keyPair = KeyPairGenerator.getInstance("EC", "BCFIPS");
 
         keyPair.initialize(new ECGenParameterSpec(curveName));
@@ -68,8 +58,7 @@ public class EC
     }
 
     public static byte[] initiatorAgreementBasic(PrivateKey initiatorPrivate, PublicKey recipientPublic)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDH", "BCFIPS");
 
         agreement.init(initiatorPrivate);
@@ -82,8 +71,7 @@ public class EC
     }
 
     public static byte[] recipientAgreementBasic(PrivateKey recipientPrivate, PublicKey initiatorPublic)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDH", "BCFIPS");
 
         agreement.init(recipientPrivate);
@@ -96,8 +84,7 @@ public class EC
     }
 
     public static byte[] initiatorAgreementWithKdf(PrivateKey initiatorPrivate, PublicKey recipientPublic, byte[] userKeyingMaterial)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDHwithSHA384CKDF", "BCFIPS");
 
         agreement.init(initiatorPrivate, new UserKeyingMaterialSpec(userKeyingMaterial));
@@ -110,8 +97,7 @@ public class EC
     }
 
     public static byte[] recipientAgreementWithKdf(PrivateKey recipientPrivate, PublicKey initiatorPublic, byte[] userKeyingMaterial)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDHwithSHA384CKDF", "BCFIPS");
 
         agreement.init(recipientPrivate, new UserKeyingMaterialSpec(userKeyingMaterial));
@@ -124,58 +110,55 @@ public class EC
     }
 
     public static byte[][] initiatorAgreeKeyEstablishWithKeyConfirmation(PrivateKey initiatorPrivate, PublicKey recipientPublic, byte[] userKeyingMaterial)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDHwithSHA384CKDF", "BCFIPS");
 
         agreement.init(initiatorPrivate, new UserKeyingMaterialSpec(userKeyingMaterial));
 
         agreement.doPhase(recipientPublic, true);
 
-        AgreedKeyWithMacKey agreedKey = (AgreedKeyWithMacKey)agreement.generateSecret("CMAC[128]" + "/" + "AES[256]");
+        AgreedKeyWithMacKey agreedKey = (AgreedKeyWithMacKey) agreement.generateSecret("CMAC[128]" + "/" + "AES[256]");
 
         Mac mac = Mac.getInstance("CMAC", "BCFIPS");
 
         mac.init(agreedKey.getMacKey());
 
         DERMacData macData = new DERMacData.Builder(DERMacData.Type.UNILATERALU,
-            ExValues.Initiator, ExValues.Recipient, null, null).build();
+                ExValues.Initiator, ExValues.Recipient, null, null).build();
 
         byte[] encMac = mac.doFinal(macData.getMacData());
 
         agreedKey.getMacKey().zeroize();
 
-        return new byte[][] { agreedKey.getEncoded(), encMac };
+        return new byte[][]{agreedKey.getEncoded(), encMac};
     }
 
     public static byte[][] recipientAgreeKeyEstablishWithKeyConfirmation(PrivateKey recipientPrivate, PublicKey initiatorPublic, byte[] userKeyingMaterial)
-        throws GeneralSecurityException
-    {
+            throws GeneralSecurityException {
         KeyAgreement agreement = KeyAgreement.getInstance("ECCDHwithSHA384CKDF", "BCFIPS");
 
         agreement.init(recipientPrivate, new UserKeyingMaterialSpec(userKeyingMaterial));
 
         agreement.doPhase(initiatorPublic, true);
 
-        AgreedKeyWithMacKey agreedKey = (AgreedKeyWithMacKey)agreement.generateSecret("CMAC[128]" + "/" + "AES[256]");
+        AgreedKeyWithMacKey agreedKey = (AgreedKeyWithMacKey) agreement.generateSecret("CMAC[128]" + "/" + "AES[256]");
 
         Mac mac = Mac.getInstance("CMAC", "BCFIPS");
 
         mac.init(agreedKey.getMacKey());
 
         DERMacData macData = new DERMacData.Builder(DERMacData.Type.UNILATERALU,
-            ExValues.Initiator, ExValues.Recipient, null, null).build();
+                ExValues.Initiator, ExValues.Recipient, null, null).build();
 
         byte[] encMac = mac.doFinal(macData.getMacData());
 
         agreedKey.getMacKey().zeroize();
 
-        return new byte[][] { agreedKey.getEncoded(), encMac };
+        return new byte[][]{agreedKey.getEncoded(), encMac};
     }
 
     public static void main(String[] args)
-        throws GeneralSecurityException, IOException
-    {
+            throws GeneralSecurityException, IOException {
         Setup.installProvider();
 
         KeyPair signingPair384 = generateKeyPair();
@@ -209,6 +192,6 @@ public class EC
 
         byte[][] agreeRecipKeyMac = recipientAgreeKeyEstablishWithKeyConfirmation(recipientPair.getPrivate(), initiatorPair.getPublic(), ExValues.UKM);
 
-        System.err.println("Agreement (with key confirmation) key: " + Arrays.areEqual(agreeInitKeyMac[0], agreeRecipKeyMac[0]) + ", " + Arrays.areEqual(agreeInitKeyMac[1], agreeRecipKeyMac[1]) + ", "+ Hex.toHexString(agreeInitKeyMac[0]));
+        System.err.println("Agreement (with key confirmation) key: " + Arrays.areEqual(agreeInitKeyMac[0], agreeRecipKeyMac[0]) + ", " + Arrays.areEqual(agreeInitKeyMac[1], agreeRecipKeyMac[1]) + ", " + Hex.toHexString(agreeInitKeyMac[0]));
     }
 }

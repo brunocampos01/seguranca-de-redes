@@ -1,11 +1,11 @@
 import org.apache.commons.codec.binary.Hex;
 
+import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Scanner;
-import javax.crypto.SecretKey;
 //import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 /**
@@ -17,6 +17,7 @@ public class PBKDF2Util {
 
     /**
      * Gerar chave derivada da senha
+     *
      * @param key
      * @param salt
      * @param iterations
@@ -36,7 +37,7 @@ public class PBKDF2Util {
         }
         return derivedPass;
     }
-    
+
     /*Usado para gerar o salt  */
     public String getSalt() throws NoSuchAlgorithmException {
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
@@ -47,27 +48,27 @@ public class PBKDF2Util {
     }
 
     public static void main(String args[]) throws NoSuchAlgorithmException {
-        PBKDF2Util obj = new PBKDF2Util();        
-        
+        PBKDF2Util obj = new PBKDF2Util();
+
         String senha;
         String salt;
         int it = 10000;
-        
+
         Scanner input = new Scanner(System.in);
         System.out.println("Digite a senha: ");
         senha = input.nextLine();
 
         //senha = "123456789";
         salt = obj.getSalt();
-        
+
         System.out.println("Senha original = " + senha);
         System.out.println("Sal gerado = " + salt);
         System.out.println("Numero de iteracoes = " + it);
-        
+
         String chaveDerivada = generateDerivedKey(senha, salt, it);
-       
-        System.out.println("Chave derivada da senha = " + chaveDerivada );
-        
+
+        System.out.println("Chave derivada da senha = " + chaveDerivada);
+
     }
 
 

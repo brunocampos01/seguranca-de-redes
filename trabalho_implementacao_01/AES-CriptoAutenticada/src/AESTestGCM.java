@@ -1,28 +1,26 @@
-
 /**
  * Código adaptado de várias fontes:
  * https://github.com/bcgit/bc-java/blob/master/prov/src/test/java/org/bouncycastle/jce/provider/test/AESTest.java
  * GCMTest.java da BouncyCastle
  * Versão Agosto 2017
  */
-import java.security.Key;
-import java.security.Security;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.bouncycastle.crypto.InvalidCipherTextException;
 import org.bouncycastle.crypto.engines.AESEngine;
 import org.bouncycastle.crypto.modes.GCMBlockCipher;
 import org.bouncycastle.crypto.params.AEADParameters;
 import org.bouncycastle.crypto.params.KeyParameter;
-
-import org.bouncycastle.jce.provider.BouncyCastleProvider; // Incluido
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.util.Arrays;
 import org.bouncycastle.util.encoders.Hex;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
+import java.security.Security;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //import org.apache.commons.codec.DecoderException;
 //import org.apache.commons.codec.binary.Hex;
@@ -46,8 +44,7 @@ public class AESTestGCM {
     }
 
     // Teste do codigo original do site
-    private void gcmTest()
-            throws Exception {
+    private void gcmTest() throws Exception {
 
         // Test Case 15 from McGrew/Viega
         //  chave (K)
@@ -69,7 +66,6 @@ public class AESTestGCM {
 
         //  tag (T)
         String T = "b094dac5d93471bdec1a502270e3cc6c";
-
         //  texto cifrado (C)
         String pC;
         pC = "522dc1f099567d07f47f37a32a84427d"
@@ -106,8 +102,7 @@ public class AESTestGCM {
     }
 
     // Teste usando GCMBlockCipher da BouncyCastle
-    private void gcmTestWithGCMBlockCipherBC()
-            throws Exception {
+    private void gcmTestWithGCMBlockCipherBC() throws Exception {
 
         // Aproveitando alguns dados do Test Case 15 from McGrew/Viega
         //  chave (K)
@@ -187,10 +182,10 @@ public class AESTestGCM {
 
         int outsize2 = gcm.getOutputSize(outc.length);
         byte[] out2 = new byte[outsize2];
-        int offOut2 = gcm.processBytes(outc, 0, outc.length, out2, 0);        
-    
-        try {  
-            gcm.doFinal(out2, offOut2);           
+        int offOut2 = gcm.processBytes(outc, 0, outc.length, out2, 0);
+
+        try {
+            gcm.doFinal(out2, offOut2);
             String decifrado = new String(out2);
             System.out.println("Msg decifrada = \t\t" + decifrado);
             byte[] encT2 = gcm.getMac();
@@ -199,7 +194,7 @@ public class AESTestGCM {
         } catch (InvalidCipherTextException e) {
             System.err.println("Erro de decifragem: " + e.getMessage());
             //e.printStackTrace();
-        }        
+        }
 
     }
 
