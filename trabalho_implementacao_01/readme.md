@@ -94,10 +94,10 @@ openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt
    - **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
 Algoritmo AES no modo CBC. _Symmetric encryption example with padding and CBC using AES_
 
-  - **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
+   - **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
 Gera uma chave secreta.
 
-  - **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
+   - **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
 
 
 `init`: é o método que inicia o "Cipher", cifra, recebendo o parâmetro o tipo de operação a cifrar ou decifrar `opmode` alem de a chave de criptografia e o IV.
@@ -116,14 +116,14 @@ Fonte: https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html#doFina
 Inicialmente iremos testar apenas a função de decifragem. Use o projeto3Aes para auxiliar a responder as questões. 
 Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos codificados em hexa) e o seu objetivo é recuperar o texto plano/texto decifrado. A resposta de cada questão é o texto decifrado (frase em português).**
 
- - **a)**
+   - **a)**
    - Chave CBC: c38a0d7bdd11e031c24e4895913393f9
    - Texto cifrado em modo CBC (IV+texto cifrado):
 b90d84b82b283d5f783b9721f5f8bd1fb170b4319815f1a4fdbaff6f052f6e58a06d0200f28b1d333d8e3f11fcafef750122226c1bcea8d69416f5a15e4901b3c2fb5c33507139fe88f18c72fb0c435d
 **Resposta-texto decifrado:**<br/>
 _Modo CBC com PKCS5Padding do AES. IV nao foi cifrado._
 
- - **b)**
+   - **b)**
     - Chave CTR: abd95641ecb005d475496cd0bda4555f
     - Texto cifrado em modo CTR (IV+texto cifrado):
 7182eb9d1fd3d9ed3ae1594b3cd3b02bf4667cd27c5e0a01dc2e66f53480e5fa249269e1bd17e7e066824dcab22be4ccff41480a139eae1d390e1dd78548d7bb82841d88ae50fd4ea52727
@@ -134,24 +134,23 @@ _Modo CRT. Melhor sortear IV e chave com PRNG criptografico._
 
 3. **No código testeModifica, faça:**
  
- - **3.1. Explique o funcionamento do exemplo;**
+   - **3.1. Explique o funcionamento do exemplo;**
 É feito uma simulação de transferência de 100,00 unidades monetárias para a conta 1234-5678. Partindo do presuposto que o atacante tem conhecimento da estrutura da mensagem, é realizado uma interceptação modificando a mensagem com XOR de tal modo que há uma transferência de um valor muito maior 9000100,00 unidades monetárias.
 
- - **3.2. Explique o significado da seguinte linha de código:**
+   - **3.2. Explique o significado da seguinte linha de código:**
  ```java
  cipherText[11] ^= '0' ^ '9';
  ```
-
 
 Na posição 11 do array `cipherText[]` é atribuído, através de um XOR, (primeiro algarismo de 0000100) com o mesmo valor `'0'`, redefinindo os bits. Em seguida é feito outro XOR com `'9'` para **adulterar** o valor da transferência de 0000100 para 9000100.
 
 
 4. **No código teste HASH, faça:**
- - **4.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
+   - **4.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
 É criado um hash com o algoritmo SHA256 a partir de uma menssagem.
 Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
 
- - **4.2. O que significa o valor “false” na verificação do hash?**<br/>
+   - **4.2. O que significa o valor “false” na verificação do hash?**<br/>
  No código da classe `TamperedWithDigestExample.java` não há estrutura de seleção para verificar o hash, neste caso se o hash retornar vazio, o objeto MessageDigest pode lançar uma excessão do tipo `DigestException`.
  Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
 
@@ -174,12 +173,12 @@ A senha do usuário é hello mas com um sal longo, dificialmente será repetido 
 
 
 6. **(ENTREGAR) No código testeModificaETrocaHash, faça:**
- - **6.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
+   - **6.1. Explique como o hash sem chave é usado nesse exemplo;**<br/>
  Na declaração da variável `MessageDigest hash = MessageDigest.getInstance("SHA256", "BCFIPS");` é definido um objeto do tipo `MessageDigest` o qual possui o método `getInstance()`. Este método é responsável por retornar um objeto MessageDigest que implementa o algoritmo especificado.
  Depois da declaração, o hash invoca o método `update()` para atualizar o valor da menssagem usando um byte específico. Depois esse hash é passado como parâmentro no método `doFinal()` de uma cifra e invoca o método `digest()` para gerar o resumo da mensagem,
  Fonte: https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html
 
- - **6.2. Explique a etapa de troca do hash do código abaixo.**
+   - **6.2. Explique a etapa de troca do hash do código abaixo.**
 ```java
 // etapa de troca do hash
 byte[] originalHash = hash.digest(Utils.toByteArray(input));
@@ -199,16 +198,16 @@ Fonte: https://www.tutorialspoint.com/java_cryptography/java_cryptography_messag
 
 **Obs: para funcionar este código você deve descompactar o arquivo jce_policy-8 que está dentro do diretório deste projeto. LEIA o README para saber para onde você deve copiar os arquivos descompactados. Só fazendo isso você conseguirá criar o AES com tamanhos de chave maiores. Se você tiver o JAVA 7, você deve baixar o arquivo na Internet: procure por Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7.**
 
- - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**<br/>
+   - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**<br/>
  Este método basicamente testa usando GCMBlockCipher da BouncyCastle, não necessita de parâmetros e não possui retorno `void`. Durante sua execução, ele é responsável por instanciar as seguintes variáveis:
  chave `byte[] K`, texto plano `byte[] P`, IV `byte[] N`, tag `String T`, texto cifrado `byte[] C` e mensagem de entrada `String input`.
  Na sequencia, ele cifra, criando um objeto do tipo `GCMBlockCipher gcm` e depois passa os parâmetros para ser feito a cifragem da mensagem.
  Após a cifragem é feita a mudança do texto cifrado usando 2 XOR sequencias. Com a mensagem alterada, é feita a decifragem e os valores são exibidos.
 
- - **8.2. Como as tags (MACs) foram usadas para identificar a modificação no texto cifrado?**<br/>
+   - **8.2. Como as tags (MACs) foram usadas para identificar a modificação no texto cifrado?**<br/>
 O GCMBlockCipher checa o MAC do gcm `byte[] encT1 = gcm.getMac();`. Desta forma é possível saber que a mensagem foi adulterada.
 
- - **8.3. A detecção da modificação foi feita de forma manual ou automática no código? Explique.**<br/>
+   - **8.3. A detecção da modificação foi feita de forma manual ou automática no código? Explique.**<br/>
  A detecção foi realizada de modo automático através do método `getMac()` que pertence ao objeto `gcm`, sendo que este método é implementado na classe `GCMBlockCipher`
 
 11. **(ENTREGAR) O projeto testeKeyStorev2 tem exemplo de uso do KeyStore do Java. Explique como funciona o código exemplo. A figura 1 mostra exemplo de estrutura do keystore Java. O exemplo de código na classe `KeyStrAdap.java` demonstra o uso do keystore do tipo BCFKS (keystore da BouncyCastle padrão FIPS). Execute o código da classe KeyStrAdap.java.
