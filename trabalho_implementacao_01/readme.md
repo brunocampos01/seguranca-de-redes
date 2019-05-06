@@ -120,7 +120,9 @@ Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos cod
    - Chave CBC: c38a0d7bdd11e031c24e4895913393f9
    - Texto cifrado em modo CBC (IV+texto cifrado):
 b90d84b82b283d5f783b9721f5f8bd1fb170b4319815f1a4fdbaff6f052f6e58a06d0200f28b1d333d8e3f11fcafef750122226c1bcea8d69416f5a15e4901b3c2fb5c33507139fe88f18c72fb0c435d
-**Resposta-texto decifrado:**<br/>
+
+**Resposta-texto decifrado:**
+
 _Modo CBC com PKCS5Padding do AES. IV nao foi cifrado._
 
    - **b)**
@@ -128,9 +130,9 @@ _Modo CBC com PKCS5Padding do AES. IV nao foi cifrado._
     - Texto cifrado em modo CTR (IV+texto cifrado):
 7182eb9d1fd3d9ed3ae1594b3cd3b02bf4667cd27c5e0a01dc2e66f53480e5fa249269e1bd17e7e066824dcab22be4ccff41480a139eae1d390e1dd78548d7bb82841d88ae50fd4ea52727
 <br/>
-**Resposta-texto decifrado:**<br/>
-_Modo CRT. Melhor sortear IV e chave com PRNG criptografico._
+**Resposta-texto decifrado:**
 
+_Modo CRT. Melhor sortear IV e chave com PRNG criptografico._
 
 3. **No código testeModifica, faça:**
  
@@ -198,7 +200,7 @@ Fonte: https://www.tutorialspoint.com/java_cryptography/java_cryptography_messag
 
 **Obs: para funcionar este código você deve descompactar o arquivo jce_policy-8 que está dentro do diretório deste projeto. LEIA o README para saber para onde você deve copiar os arquivos descompactados. Só fazendo isso você conseguirá criar o AES com tamanhos de chave maiores. Se você tiver o JAVA 7, você deve baixar o arquivo na Internet: procure por Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7.**
 
-   - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**<br/>
+  - **8.1. Explique o funcionamento do método gcmTestWithGCMBlockCipherBC;**<br/>
  Este método basicamente testa usando GCMBlockCipher da BouncyCastle, não necessita de parâmetros e não possui retorno `void`. Durante sua execução, ele é responsável por instanciar as seguintes variáveis:
  chave `byte[] K`, texto plano `byte[] P`, IV `byte[] N`, tag `String T`, texto cifrado `byte[] C` e mensagem de entrada `String input`.
  Na sequencia, ele cifra, criando um objeto do tipo `GCMBlockCipher gcm` e depois passa os parâmetros para ser feito a cifragem da mensagem.
