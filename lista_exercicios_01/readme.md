@@ -30,7 +30,7 @@ fonte: https://www.greycampus.com/blog/information-security/owasp-top-vulnerabil
 ##### 3.Qual a diferença entre ataque ativo e ataque passivo –cite um exemplo de cada tipo.
 
 - Ataque Passivo:
-O atacante intercepta um canal de comunicação e mantem registros disso de forma passiva, ou seja, sem interferir na comunicação. Um atacante sniffing tráfego de rede usando um analisador de protocolo ou algum outro software de captura de pacotes.
+O atacante intercepta um canal de comunicação e mantem registros disso de forma passiva, ou seja, sem interferir na comunicação. Um atacante pode fazer um sniffing do tráfego de rede usando um analisador de protocolo ou algum outro software de captura de pacotes.
 
 - Ataque Ativo: o uso de informações obtidas durante um ataque passivo fazem com que o atacante consiga interferir nas comunicações. Exemplos de ataques ativos: crackers de senhas , ataques de negação de serviço.
 
