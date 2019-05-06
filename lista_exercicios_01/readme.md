@@ -52,7 +52,7 @@ Essa é uma ameaça à confidencialidade. Ao invés de atacar diretamente a
 criptografia, os atacantes tendem a roubar chaves, executar ataques MitM ou roubar dados em claro do servidor, em trânsito ou no cliente
 
 ##### 13.Conceitue criptografia.
-É uma ciência e arte de escrever de modo secreto e armazenamento secretp de informação.
+É uma ciência e arte de escrever de modo secreto e armazenamento secreto de informação.
 
 ##### 14.Cite os dois tipos principais de algoritmos criptográficos.
 Algoritmos simétricos que usam a mesma chave criptográfica e algoritmos assimétricos (chave pública) que usam pares de chaves públicas, que podem ser amplamente disseminadas, e chaves privadas que são conhecidas apenas pelo proprietário.
