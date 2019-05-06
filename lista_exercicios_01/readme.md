@@ -1,6 +1,6 @@
-#### Disciplina: INE 5680–Segurança da Informação e de Redes
-#### Professora: Carla Merkle Westphall
-#### Aluno: Bruno Aurélio Rôzza de Moura Campos (14104255)
+**Disciplina:** INE 5680–Segurança da Informação e de Redes <br/>
+**Professora:** Carla Merkle Westphall <br/>
+**Aluno:** Bruno Aurélio Rôzza de Moura Campos (14104255) <br/>
 
 ## Exercícios
 Entregar 10 questões da lista respondidas. Você pode escolher as questões.
