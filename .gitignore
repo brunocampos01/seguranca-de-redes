@@ -29,3 +29,5 @@ multillidae*
 # IDEs
 .idea/
 .vscode/
+/trabalho_implementacao_01/questao12/build/
+/trabalho_implementacao_01/questao12/nbproject/private/
