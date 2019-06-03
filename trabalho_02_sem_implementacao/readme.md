@@ -1,4 +1,8 @@
-# Tarefa Prática 2 (OpenSSL e Apache) 
+# Tarefa Prática 2 (OpenSSL e Apache)
+
+#### Nomes:
+Bruno Aurélio Rôzza de Moura Campos (14104255)<br/>
+Caio Cargnin Cardoso (09138003)
 
 ## PARTE 1.OpenSSL
 
@@ -128,7 +132,7 @@ openssl rand -out chaveSecretaNomeAluno.bin -base64 128
 openssl enc -aes-128-ctr \
             -in msgPlana.txt \
             -out msgCifrada \
-            -passfile:./chaveSecretaNomeAluno.bin
+            -pass file:./chaveSecretaNomeAluno.bin
 ```
 
 **Resposta:**<br/>
@@ -163,7 +167,8 @@ openssl rsautl -encrypt -oaep \
 - Nota: arquivo `chave_secreta_brunocampos.enc` em anexo.
 
 ### 9. (Entregar) Explique o que foi feito nas questões 6, 7 e 8. Explique também como será feito o processo de decifragem.
-<br/>
+
+
 **Observação:** vou verificar com os comandos abaixo!!
 
 ```bash
@@ -180,3 +185,98 @@ openssl enc -aes-128-ctr -d \
 ```
 
 **Resposta:**<br/>
+
+Na questão 6 foi gerado uma chave secreta usando o parâmetro `rand` que gera um psedo-random em bytes e lançado esse valor no arquivo `chave_secreta_brunocampos.bin` com enconding na base64.
+<br/>
+Na questão 7, foi cifrado o arquivo `msgPlana.txt` com a chave secreta (Passphrase source) `chave_secreta_brunocampos.bin` e lançado essa cifragem no arquivo `msgCifrada`.
+<br/>
+Por fim, na questão 8 foi cifrado a chave secreta `chave_secreta_brunocampos.bin` com o certificado `certificadoCarla.crt` e lançado no arquivo `chave_secreta_brunocampos.enc`.
+<br/>
+Decifragem: 
+De forma inversa, para decifrar é necessário informar a chave privada do certificado, o certificado e qual o arquivo de saída.
+
+## GERAR SEU CERTIFICADO NA ICPEDU
+
+### 10. (Entregar)
+- Acessar o site https://p1.icpedu.rnp.br/default/public/default e gerar o seu certificado digital pessoal.
+- Clique em “Emitir”.
+- Logue pela Federação Café na UFSC.
+- Depois de autenticar com o email e senha do idufsc, você obterá a tela da figura 1. 
+- Coloque  uma  senha  para  proteger  o  arquivo  PKCS12  que  será  gerado. 
+- NOTA: Documente com screeshots o processo. Depois de emitir, você obterá a tela da figura 2.
+
+**Resposta:**<br/>
+
+<img src=imagens/10.png>
+
+<img src=imagens/10.2.png>
+
+- Nota: arquivo `SAEC P1 - Bruno Aurelio Rozza de Moura.p12` em anexo.
+
+
+### 11. (Entregar) Agora, clique em https://p1.icpedu.rnp.br/index/howto e instale o seu certificado no navegador. Documente com screenshots.
+
+**Resposta:**<br/>
+
+<img src=imagens/11.1.png>
+
+<img src=imagens/11.2.png>
+
+
+### 12. (Entregar) Explique o formato deste certificado:
+
+**a) Qual é o formato?**
+
+**Resposta:**<br/>
+
+É uma arquivo com extensão `.p12` 
+
+**b. Onde ficam a chave pública e a chave privada?**
+
+**Resposta:**<br/>
+
+Ficam no arquivo `'SAEC P1 - Bruno Aurelio Rozza de Moura.p12'`. É possível extrair a chave privada do arquivo com os comandos:
+
+**Private**
+```bash
+openssl pkcs12 -in ../projetos/seguranca/trabalho_02_sem_implementacao/'SAEC P1 - Bruno Aurelio Rozza de Moura.p12' \
+               -nocerts -nodes \
+               | openssl rsa > id_rsa_trab_02
+```
+
+- Nota: arquivos `id_rsa_trab_02` em anexo.
+
+
+**c. Quem é a autoridade certificadora que assinou o certificado?**
+
+**Resposta:**<br/>
+
+AC Raiz da ICPEDU V2
+
+
+### 14. (Entregar) Agora o certificado X.509 AUTO-ASSINADO será efetivamente criado (assinado por você mesmo, usando a SUA chave privada), usando o comando:
+```bash
+openssl x509 -req -days 90 -sha512 \
+                  -in ertifcicado.csr \
+                  -signkey  seunome.privada.pem \
+                  -out certificado.crt
+```
+
+**Resposta:**<br/>
+
+```bash
+openssl x509 -req -days 90 -sha512 \
+                  -in  ../projetos/seguranca/trabalho_02_sem_implementacao/'SAEC P1 - Bruno Aurelio Rozza de Moura.p12' \
+                  -signkey  brunocampos.privada.pem \
+                  -out ../projetos/seguranca/trabalho_02_sem_implementacao/certificado_brunocampos.crt
+```
+
+<img src=imagens/14.png>
+
+- Nota: arquivos `certificado_brunocampos.crt` em anexo.
+
+## Apache2
+
+### 16-35
+
+<img src=imagens/16.png>
