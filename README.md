@@ -16,7 +16,7 @@
 ## Trabalhos
 - 
 
-### Pre requirements
+### Pre Requirements
 
 - Java >= 1.8
 
@@ -31,7 +31,7 @@ ant -version # Apache Ant(TM) version 1.10.5
 sudo apt-get install libssl-dev
 ```
 
-- Openssl >= 1.0.2o
+- OpenSSL >= 1.0.2o
 ```bash
 sudo apt install openssl
 openssl version # OpenSSL 1.0.2o  27 Mar 2018
