@@ -16,7 +16,7 @@
 ## Trabalhos
 - 
 
-### Pre Requirements
+### Requisitos
 
 - Java >= 1.8
 
