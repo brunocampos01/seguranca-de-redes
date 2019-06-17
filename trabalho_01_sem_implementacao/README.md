@@ -4,13 +4,13 @@
 Bruno Aurélio Rôzza de Moura Campos (14104255)<br/>
 Caio Cargnin Cardoso (09138003)
 
-#### Matéria:
+#### Matéria
 - Segurança da informação e sistemas - INE5680
 
-#### Arquivo de Configuração:
+#### Arquivo de Configuração
 - [configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti](configurar_kali_e_OWASP_broken_no_virtualbox_e_Instalar_muti.pdf)
 
-#### Arquivo de Descrição do trabalho:
+#### Arquivo de Descrição do trabalho
 - [INE5680-tarefa_pratica_metasploit_v14.pdf](INE5680-tarefa_pratica_metasploit_v14.pdf)
 
 
