@@ -18,27 +18,27 @@ Caio Cargnin Cardoso (09138003)
 **Respostas**<br/>
 
 a. <br/>
-User Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36
+`User Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36`
 
-<img src='imagens/1.a.parte-1.png'  align="middle" height=auto widht=100% >
+<img src='imagens/1.a.parte-1.png'  align="middle" height=auto widht=80% >
 
-<img src='imagens/1.a.parte-2.png'  align="middle" height=auto widht=100% >
+<img src='imagens/1.a.parte-2.png'  align="middle" height=auto widht=80% >
 
-<img src='imagens/1.a.parte-3.png'  align="middle" height=auto widht=100% >
+<img src='imagens/1.a.parte-3.png'  align="middle" height=auto widht=80% >
 
 
 b.
 
-<img src='imagens/1.b.parte-1.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-2.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-3.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-4.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-5.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-6.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-7.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-8.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-9.png'  align="middle" height=auto widht=100% >
-<img src='imagens/1.b.parte-10.png'  align="middle" height=auto widht=100% >
+<img src='imagens/1.b.parte-1.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-2.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-3.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-4.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-5.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-6.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-7.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-8.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-9.png'  align="middle" height=auto widht=80% >
+<img src='imagens/1.b.parte-10.png'  align="middle" height=auto widht=80% >
 
 
 ### 2. Questão
@@ -46,7 +46,7 @@ Leia  as  recomendações  da  página https://github.com/ssllabs/research/wiki/
 
 **Respostas**
 <br/>
-1. Chave privada e certificado
+##### Chave privada e certificado
 
 O TLS começa com a identificação criptográfica do servidor. Para isso, é usado uma chave privada forte afim de evitar ataques de falsificação de identidade. Para garantir a segurança, há algumas dicas como:
 
@@ -69,7 +69,7 @@ O TLS começa com a identificação criptográfica do servidor. Para isso, é us
 
 - **Use Algoritmos de Assinatura de Certificado Forte:** A segurança do certificado depende (1) da força da chave privada que foi usada para assinar o certificado e (2) da força da função de hash usada na assinatura.
 
-2. Configuração
+##### Configuração
 
 É uma garantia que as credenciais sejam apresentadas corretamente aos visitantes do site. Há uma série de medidas para ser levado em conta:
   - **Use protocolos seguros:** Na maioria das implantações, o certificado do servidor sozinho é insuficiente; Dois ou mais certificados são necessários para construir uma cadeia completa de confiança.
@@ -97,21 +97,18 @@ Explique de forma geral as quatro fases do handshake de acordo com as páginas d
 
 **Respostas**<br/>
 
-1. Estabelecer capacidades de segurança
-<br/>
+1. **Estabelecer capacidades de segurança:**
 É a fase que inicia a comunicação. O cliente envia mensagem contendo alguns parâmetros:
-    - versão do SSL
-    - ID da sessão
-    - Conjunto de cifras (cipherSuite) - é uma lista contendo algoritmo de troca de chave. Por exemplo, RSA, Diffie-Hellman, Diffie-Hellman anônimo Fortezza
-    - Método de compactação(compression method) - é uma lista dos métodos de compactação que o cliente admite
+  - versão do SSL
+  - ID da sessão
+  - Conjunto de cifras (cipherSuite) - é uma lista contendo algoritmo de troca de chave. Por exemplo, RSA, Diffie-Hellman, Diffie-Hellman anônimo Fortezza
+  - Método de compactação(compression method) - é uma lista dos métodos de compactação que o cliente admite
 Em seguida, o cliente aguarda a resposta do servidor.
 
-2. Autenticação de servidor e troca de chaves
-<br/>
+2. **Autenticação de servidor e troca de chaves:** 
 Nesta etapa, o servidor encaminha seus certificados, se necessãrio autenticar. A menssagem de certificado é exigida para qualquer troca de chaves que tenham sido acordadas, exceto se for Diffie-Hellman anônimo. A mensagem final desta fase é sempre exigida, é uma mensagem `server_done` enviada pelo servidor para indicar o final da resposta dele. Em seguida, o servidor aguardará uma resposta do cliente
 
-3. Autenticação do cliente e troca de chaves
-<br/>
+3. **Autenticação do cliente e troca de chaves:**
 Quando o cliente recebe uma mensagem `server_done` ele verifica se o certificado é válido e se os parâmetros `server_hello` são aceitáveis. Se tudo ok, o cliente responde seja com uma mensagem `certificate` ou `no_certificate`. Na sequência, é recebido uma mensagem `client_key_exchange` contendo asgum conjunto de cifras:
   - RSA
   - Diffie-Hellman anônimo ou efêmero
@@ -119,44 +116,27 @@ Quando o cliente recebe uma mensagem `server_done` ele verifica se o certificado
   - Fortezza
 No fim desta fase, o cliente pode enviar uma mensagem `certificate_verify` para oferecer uma cerificação explítica de um certificado. Contudo, essa mensagem só é enviada após qualquer certificado que tenha capacidade de assinatura, ou seja qualquer certificado menos Diffie-Hellman fixo
 
-4. Término
-<br/>
+4. **Término:**
 Na última etapa, o cliente envia uma mensagem `change_cipher_spec`. Cabe notar que essa mensagem não é considerada parte do protocolo de estabelecimento de sessão mas sim enviada usando o protocoloo de mudança de especificação de cifra. Alem da mensagem anterior, o cliente encaminha a mensagem `finished_message` sob os novos algoritmos, chaves e segredos.<br/>
-Em resposta, o servidor envia sua mensagem `change_cipher_spec`, transfere o CipherSpec pendente para o atual e envia sua `fineshed_message`. A partir daqui, o cliente e servidor podem trocar dados na camada de aplicação.
+Em resposta, o servidor envia sua mensagem `change_cipher_spec`, transfere o CipherSpec pendente para o atual e envia sua `fineshed_message` . A partir daqui, o cliente e servidor podem trocar dados na camada de aplicação.
 
 
 ### 4. Questão - Coleta de um tráfego de handshake TLS
 Você deve capturar um handshake do TLS no Wireshark: ative a captura de pacotes no Wireshark, abra a conexão com um site que usa HTTPS e capture o tráfego. Depois de estabelecer a conexão segura, pare a  captura,  salve  a  capture  com  seu nome  (para  entregar  no  moodle  o  arquivo).  Comente um pouco o handshake do seu tráfego.
 
-**Respostas**<br/>
-
+**Respostas**
+<br/>
 - A comunicação foi estabelecida com o endereço: https://github.com/
 - É possível notar claramente as 4 etapas do handshakeem cada mensagem
   - Estabelecer capacidades de segurança
-
   <img src='imagens/client-hello.png'  align="middle" height=auto widht=100% >
-
+<br/>
 
   - Autenticação de servidor e troca de chaves
- 
   <img src='imagens/hello.png'  align="middle" height=auto widht=100% >
 
   <img src='imagens/4.2.png'  align="middle" height=auto widht=100% >
+<br/>
 
   - Autenticação do cliente e troca de chaves
-
   <img src='imagens/diff-h.png'  align="middle" height=auto widht=100% >
-
-
-### 5. Questão
-Compare o handshake dos protocolos TLS v1.2 e TLS v1.3 lendo o material dos seguintes sites e observando as figuras. Tente responder de forma resumida, como feito na questão 3.
- - https://www.cloudflare.com/learning-resources/tls-1-3/
- - https://blog.cloudflare.com/rfc-8446-aka-tls-1-3/
- - RFC TLS 1.3: https://tools.ietf.org/html/rfc8446(seção2)
- - RFC TLS 1.2: https://tools.ietf.org/html/rfc5246(seção7.3)
-
-<img src='imagens/trab1.png'  align="middle" height=auto widht=100% >
-
-Você recebeu dois arquivos em anexo–gmail12 e facebook13. Esses arquivos contêmtráfegos de handshake estabelecidos com o gmail e com o facebook. Você irá analisar o handshake do TLS 1.2 no tráfego do gmail e  o  handshake  do  TLS  1.3 no  tráfego  do  facebook.A  análise  do  handshake  será  feita  nas  questões que seguem.
-
-**Respostas**<br/>
