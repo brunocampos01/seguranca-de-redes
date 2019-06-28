@@ -1,9 +1,9 @@
 # Steps DiffieHellman -> STS
 
 - [x] Sockets
-- [x] Gerar certificado
+- [ ] Gerar certificado
 - [x] Troca de parâmetros
-- [x] KeyStore
+- [ ] KeyStore
 - [ ] Diffie-Hellmann
 
 ## Compile<br/>
