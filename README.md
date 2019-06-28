@@ -19,9 +19,9 @@
 ### Requisitos
 
 - Java >= 1.8
-
+ - Javac 11.0.2
 - Ant >= 1.10.5
-```bash
+```shell script
 sudo apt install ant
 ant -version # Apache Ant(TM) version 1.10.5
  ```

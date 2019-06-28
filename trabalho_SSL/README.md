@@ -15,7 +15,7 @@ Caio Cargnin Cardoso (09138003)
 
 **Obs.**: forward  secrecy significa  que se  uma  chave  for  comprometida  durante  uma  sessão,  esse conhecimento/fatonão  afeta  a  segurança  de  sessões  anteriores. A  troca  de  chaves  RSA  (RSA  key Exchange) não fornece forward secrecy pois se alguma chave privada for comprometida, todo o tráfego anterior pode ser decifrado.
 
-**Respostas**<br/>
+**Resposta**<br/>
 
 a. <br/>
 `User Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36`
@@ -44,7 +44,7 @@ b.
 ### 2. Questão
 Leia  as  recomendações  da  página https://github.com/ssllabs/research/wiki/SSL-and-TLS-Deployment-Best-Practicese faça um pequeno resumo das seções 1 e 2 dessas recomendações.
 
-**Respostas**
+**Resposta**
 <br/>
 ##### Chave privada e certificado
 
@@ -95,7 +95,7 @@ O TLS começa com a identificação criptográfica do servidor. Para isso, é us
 ### 3. Questão
 Explique de forma geral as quatro fases do handshake de acordo com as páginas do livro do Stallings 386, 387, 388 e 389 (o pdf do capítulo está anexado junto na tarefa).
 
-**Respostas**<br/>
+**Resposta**<br/>
 
 1. **Estabelecer capacidades de segurança:**
 É a fase que inicia a comunicação. O cliente envia mensagem contendo alguns parâmetros:
@@ -124,7 +124,7 @@ Em resposta, o servidor envia sua mensagem `change_cipher_spec`, transfere o Cip
 ### 4. Questão - Coleta de um tráfego de handshake TLS
 Você deve capturar um handshake do TLS no Wireshark: ative a captura de pacotes no Wireshark, abra a conexão com um site que usa HTTPS e capture o tráfego. Depois de estabelecer a conexão segura, pare a  captura,  salve  a  capture  com  seu nome  (para  entregar  no  moodle  o  arquivo).  Comente um pouco o handshake do seu tráfego.
 
-**Respostas**
+**Resposta**
 <br/>
 - A comunicação foi estabelecida com o endereço: https://github.com/
 - É possível notar claramente as 4 etapas do handshakeem cada mensagem
