@@ -1,10 +1,13 @@
 # Steps DiffieHellman -> STS
 
 - [x] Sockets
-- [x] Gerar certificado
-- [x] Troca de parâmetros
-- [x] KeyStore
-- [ ] Diffie-Hellmann
+- [ ] Gerar certificado
+- [ ] Troca de parâmetros
+  - Trocar os valores calculados entre o servidor e cliente
+- [ ] KeyStore
+- [x] Diffie-Hellmann
+
+**NOTE**: O mais recomendado é usar libs que já calculam o Diffie-Hellmann, `bouncycastle` por exemplo.
 
 ## Compile<br/>
 Without ant

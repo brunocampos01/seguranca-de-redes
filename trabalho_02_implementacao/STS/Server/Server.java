@@ -1,5 +1,3 @@
-package STS.Server;
-
 import java.net.*;
 import java.io.*;
 
@@ -10,8 +8,9 @@ public class Server {
     private static int b = 3;
 
     // Parametros do cliente: public key(p, g) e private key(A) 
-    private double clientP, clientG, clientA;
-    private static String keyServer = diffieHellmann(b, clientG, clientP);
+    private static double clientP, clientG, publicKeyClient;
+    private static String publicKeyServer = diffieHellmann(b, clientG, clientP);
+
 
     // socket
     public static Socket startServer(int port) throws IOException, SocketTimeoutException {
@@ -30,21 +29,16 @@ public class Server {
         }
     }
     
-    //  Diffie-Hellmann                                                        
+    //  Diffie-Hellmann
     public static String diffieHellmann(int b, double clientG, double clientP) {            
         double B = ((Math.pow(clientG, b)) % clientP);  // cálculo do Diffie-Hellmann: g^b mod p  
-        keyServer = Double.toString(B);                                                       
-                                                                                               
-        return keyServer;                                                                     
-    }                                                                                       
-     
-    
-    public void receiveParams(int b, double clientP, double clientG, double clientA, Socket server)
+        publicKeyServer = Double.toString(B);                                                       
+
+        return publicKeyServer;                                                    
+    }
+
+    public static void receiveParams(Socket server)
         throws IOException{
-        
-        clientP = this.clientP;
-        clientG = this.clientG;
-        clientA = this.clientA;
 
         // Private Key do servidor 
         System.out.println("Servidor: Private Key = " + b);
@@ -58,27 +52,23 @@ public class Server {
         clientG = Integer.parseInt(in.readUTF()); // armazena g 
         System.out.println("Cliente: G = " + clientG);
 
-        clientA = Double.parseDouble(in.readUTF()); // armazena A 
-        System.out.println("Cliente: Public Key = " + clientA);
+        publicKeyClient = Double.parseDouble(in.readUTF()); // armazena A 
+        System.out.println("Cliente: Public Key = " + publicKeyClient);
     }
     
     // cálculo key de sessão
-    public static double sessionKey(double clientA, int b) {
-        System.out.println("Key clientA: = " + clientP);
-        System.out.println("Key b: = " + b);
-
+    public static void sessionKey(double clientA, int b) {
         double keySession  = ((Math.pow(clientA, b)) % clientP); // cálculo do Diffie-Hellmann: g^ab mod p        
         System.out.println("Key Session: = " + keySession);
-
-        return keySession;
     }
 
 
     public static void main(String[] args) throws IOException, SocketTimeoutException {
         Socket socketServer = startServer(port);
-        receiveParams(b, clientP, clientG, clientA, socketServer);
-        sessionKey(clientA, b);
-        socketServer.close(); 
+        receiveParams(socketServer);
+        sessionKey(publicKeyClient, b);
+
+        socketServer.close();
     }
-    
-} 
+
+}

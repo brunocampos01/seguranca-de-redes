@@ -9,13 +9,13 @@ public class Client {
     private static int a = 4;      //  escolher aleatório a em {1,…,p-1}
     
     // Slides: INE56807, pg 7
-    // Public Keys = p, g
+    // Parâmetros para calcular o Public Keys = p, g
     private static int p = 22307;  // Fixar um grande número primo p 
     private static int g = 9;      // Fixar um inteiro g em {1, …, p}
 
     private static String pString, gString;
-    private static String keyClient = diffieHellmann(p, g, a);
-    
+    private static String publicKeyClient = diffieHellmann(p, g, a);
+
     
     // Socket
     public static Socket startClient(int port, String serverName) throws Exception {
@@ -34,9 +34,9 @@ public class Client {
     // Diffie-Hellmann                               
     public static String diffieHellmann(int p, int g, int a) {
         double A = ((Math.pow(g, a)) % p);  // cálculo do Diffie-Hellmann: g^a mod p  
-        String keyClient = Double.toString(A);
+        String publicKeyClient = Double.toString(A);
         
-        return keyClient;
+        return publicKeyClient; //public key client
     }
     
     // Envio de parâmetros
@@ -54,16 +54,24 @@ public class Client {
         // Private Key do cliente
         System.out.println("Cliente : Private Key = " + a);
 
-        out.writeUTF(keyClient); // envia o identificador A
+        out.writeUTF(publicKeyClient); // envia o identificador A
     }
-    
+
+    // // cálculo key de sessão
+    // public static void sessionKey(double server, int b) {
+    //     double keySession  = ((Math.pow(server, b)) % clientP); // cálculo do Diffie-Hellmann: g^ab mod p        
+    //     System.out.println("Key Session: = " + keySession);
+    // }
+
     // Certificado
-    public static void signature() {        
+    public static void signature() {
     }
     
     public static void main(String[] args) throws Exception {
         Socket socketClient = startClient(port, serverName);
         sendParams(socketClient);
+        // sessionKey(publicKeyClient, b);
+
         socketClient.close();
     }
 } 
