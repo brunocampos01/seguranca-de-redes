@@ -1,6 +1,6 @@
-# Tarefa Prática 1 - Nmap, Web, Shodan, Metasploit
+# Tarefa Prática 1 - Nmap, OWASP, Metasploit
 
-#### Nomes:
+#### Nomes
 Bruno Aurélio Rôzza de Moura Campos (14104255)<br/>
 Laís Ferrigo Perazzolo (14101383)
 
@@ -188,8 +188,16 @@ Inserido script: `<script>alert('oops');</script>`
 
 <image src="images/q_6.2.png">
 
-Quando um invasor faz com que o navegador de um usuário execute seu código, o código será executado no contexto (ou zona) de segurança do site de hospedagem. Com esse nível de privilégio, o código tem a capacidade de ler, modificar e transmitir quaisquer dados confidenciais acessíveis pelo navegador.
+**Funcionamento**:
+O Cross Site Scripting (XSS) é uma vulnerabilidade em um aplicativo Web que permite que terceiros executem um script no navegador do usuário em nome do aplicativo Web. Caso a entrada precisar ser fornecida ao site sempre que for executado então este XSS é dito refletido. 
 
+A vítima solicita uma página com uma solicitação contendo a payload e a payload é incorporada na resposta como um script.
+O código do payload tem a capacidade de ler, modificar e transmitir quaisquer dados confidenciais acessíveis pelo navegador.
+
+
+<image src="images/reflectedXSS.png">
+
+**O que pode acontecer**: 
 Um usuário com script entre sites pode ter sua conta invadida (roubo de cookie), seu navegador redirecionado para outro local ou possivelmente exibir conteúdo fraudulento entregue pelo site que está visitando. Os ataques de script entre sites comprometem essencialmente a relação de confiança entre um usuário e o site.
 
 - Link para o ataque: http://192.168.56.103/WackoPicko/guestbook.php
@@ -270,8 +278,7 @@ No passo 1 foi criado um metasploit payload onde cria uma conexão da máquina d
 
 **b. Qual a vulnerabilidade explorada?**
 
-Arquivos binários, como .exee .bin, geralmente são entregues através de explorações do lado do cliente, como e-mails de phishing ou ataques de engenharia social, o que significa que você provavelmente precisará ignorar a detecção de antivírus para executar o código de shell no sistema de destino . Para ajudar a reduzir a detecção antivírus, o Payload 
-
+Sequestro de conexão TCP.
 
 **c. O que é o meterpreter?**
 
@@ -282,6 +289,12 @@ em um ataque, fornecendo informações sobre a vítima.
 meterpreter listados com o comando help ou listados na Figura 10 e explique cada um deles,
 colocando a imagem da execução dos seus comandos. Alguns comandos para máquinas Windows
 não funcionarão na máquina Linux.**
+
+
+Arquivos binários, como .exe, .bin, geralmente são entregues através de explorações do lado do cliente, como e-mails de phishing ou ataques de engenharia social, o que significa que provavelmente precisará ignorar a detecção de antivírus para executar o código de shell no sistema de destino . 
+
+Este tipo de ataque abre uma porta de comunicação (backdoor) diretamente com o computador alvo. Com isso, se tornar possível o controle da máquina.
+
 
 
 <!-- ### Questão 14.
@@ -383,5 +396,7 @@ Um ataque poderia ser o desligamento da câmera num período propício ou senão
 ---
 
 ### Referências:
-- https://nmap.org/ acesso 08/04/2020
-- https://www.owasp.org/images/7/72/OWASP_Top_10-2017_(en).pdf.pdf acesso 08/04/2020
+- https://nmap.org/ acesso 29/03/2020
+- https://www.owasp.org/images/7/72/OWASP_Top_10-2017_(en).pdf.pdf acesso 29/03/2020
+- https://www.geeksforgeeks.org/what-is-cross-site-scripting-xss/ acesso 29/03/2020
+- https://github.com/adamdoupe/WackoPicko acesso 29/03/
