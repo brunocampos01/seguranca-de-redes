@@ -31,6 +31,12 @@ ant -version # Apache Ant(TM) version 1.10.5
 sudo apt-get install libssl-dev
 ```
 
+- Virtual Machine: [OWASP](https://sourceforge.net/projects/owaspbwa/files/1.2/OWASP_Broken_Web_Apps_VM_1.2.ova/download)
+- Create virtual interface to virtual box:
+```bash
+VBoxManage hostonlyif create
+```
+
 - OpenSSL >= 1.0.2o
 ```bash
 sudo apt install openssl
