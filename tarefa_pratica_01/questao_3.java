@@ -34,53 +34,31 @@ public class ProjetoaesEntraDados {
     private Cipher cipher;
     private SecretKeySpec secretKey;
 
-    public void inicia() throws NoSuchAlgorithmException, NoSuchPaddingException, NoSuchProviderException {
-        // Instancia o cipher
-        cipher = Cipher.getInstance("AES/CTR/NoPadding"); // 3.1
-        cipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); // 3.2
-       
-          // Gera uma chave AES
-//        System.out.print("Gerando chave \t-> "); 
-//        KeyGenerator sKenGen = KeyGenerator.getInstance("AES"); 
-//        aesKey = sKenGen.generateKey();
-//        System.out.println("Chave AES \t= " + Hex.encodeHexString(aesKey.getEncoded()));
+//    public void inicia(String Chave, String IV, String texto) throws NoSuchAlgorithmException, NoSuchPaddingException, NoSuchProviderException {
+//        // Instancia o cipher
+//        cipher = Cipher.getInstance("AES/CTR/NoPadding"); // 3.1
+//        cipher = Cipher.getInstance("AES/CBC/PKCS5Padding"); // 3.2
 //        
-        // Chave na String
-        String chave1 = "53efb4b1157fccdb9902676329debc52";
-        try {
-            key = Hex.decodeHex(chave1.toCharArray());
-        } catch (DecoderException ex) {
-            Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        secretKey = new SecretKeySpec(key, "AES");
-         
-        // Gerando o iv com SecureRandom
-        System.out.print("Gerando IV \t-> "); 
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
-        iv = new byte[16];
-        random.nextBytes(iv);
-        ivSpec = new IvParameterSpec(iv);
-        System.out.println("IV \t= " + Hex.encodeHexString(iv));
-        
-        /**
-        // IV na String
-         String iv1 = "2e4d285ae4837d9c746fc36a18dc2758";
-         
-          try { iv = Hex.decodeHex(iv1.toCharArray()); } catch
-          (DecoderException ex) {
-          Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE,
-          null, ex); } ivSpec = new IvParameterSpec(iv);
-         */
-    } // fim inicia
+//        // Chave na String
+//        String chave1 = Chave;
+//        try {
+//            key = Hex.decodeHex(chave1.toCharArray());
+//        } catch (DecoderException ex) {
+//            Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        secretKey = new SecretKeySpec(key, "AES");
+//         
+//        // iv
+//        ivSpec = new IvParameterSpec(IV);
+//        System.out.println("IV \t= " + Hex.encodeHexString(iv));
+//    } // fim inicia
 
-    public String decrypt(String dec) throws InvalidKeyException, InvalidAlgorithmParameterException {
+    public String decrypt(String decryptMode, String Chave, String IV, String texto) throws InvalidKeyException, InvalidAlgorithmParameterException {
         try {
-
-            cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
-            //cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
+            cipher.init(decryptMode, Chave, IV);
             byte[] embytes = {};
             try {
-                embytes = Hex.decodeHex(dec.toCharArray());
+                embytes = Hex.decodeHex(texto.toCharArray());
             } catch (DecoderException ex) {
                 Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -98,16 +76,25 @@ public class ProjetoaesEntraDados {
     public static void main(String args[]) throws InvalidKeyException, InvalidAlgorithmParameterException {
         ProjetoaesEntraDados obj = new ProjetoaesEntraDados();
 
-        String paraCifrar;
+        textoCifradoCBC = "701f7fa45d9bb922c3cb15a519ba40ede1769eb753650886d6e69ebcad9c2816002679896a65a921d25\n" +
+            "e00793078474e3dbeca9a2838031c490e5ae9d1ea143f"
+        System.out.println("Mensagem cifrada = " + textoCifradoCBC);
+        String decifradaCBC = obj.decrypt(
+            "AES/CBC/PKCS5Padding",
+            '53efb4b1157fccdb9902676329debc52',
+            'd161fbaa4c64ecf7d2c4abd885751273',
+            textoCifradoCBC);
+        System.out.println("Mensagem CTR Decifrada = " + decifradaCBC);
+        
+        textoCifradoCTR = "36466b5fddcfcb1b8a9479eb8c489e7139a3c35020b1e5ee808b39ff18b6abd812afe7dbbca40e15df391\n" +
+            "a7c07ece1c8e10a49368b86a946c8379cd8fa01a47f1956671144b0ca18a4c812cde8f7b9"
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Digite a msg para cifrar: ");
-        paraCifrar = input.nextLine();
-
-        System.out.println("Mensagem original = " + paraCifrar);
-        String cifrada = obj.encrypt(paraCifrar);
-        System.out.println("Mensagem cifrada = " + cifrada);
-        String decifrada = obj.decrypt(cifrada);
-        System.out.println("Mensagem decifrada = " + decifrada);
+        System.out.println("Mensagem cifrada = " + textoCifradoCTR);
+        String decifradaCTR = obj.decrypt(
+            "AES/CTR/NoPadding",
+            "a05e2679204241af07f6857d150a1fcd",
+            "468ce1126a37b07138e78eab48344712",
+            textoCifradoCTR);
+        System.out.println("Mensagem CTR decifrada = " + decifradaCTR);
     }
 }
