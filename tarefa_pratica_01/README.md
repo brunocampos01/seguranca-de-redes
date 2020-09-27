@@ -9,13 +9,13 @@
 ## Tarefa Prática – Exercícios de criptografia simétrica, hash, MAC, PBKDF e Criptografia Autenticada em Java
 
 1. **Abra o projeto2CodigoLivro e teste o seu funcionamento. Responda:**
-   - **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
+- **1.1. Qual algoritmo é usado no código? Em qual modo?**<br/>
 Algoritmo AES no modo CBC. _Symmetric encryption example with padding and CBC using AES_
 
-   - **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
+- **1.2. Explique o que faz o método generateKey da classe https://docs.oracle.com/javase/7/docs/api/javax/crypto/KeyGenerator.html**<br/>
 Gera uma chave secreta (simétrica).
 
-   - **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
+- **1.3. Explique como são usados os métodos init, update e doFinal para cifrar e para decifrar os dados nesse código. Leia a documentação e entenda bem o funcionamento desses métodos.**
 
 
 `init`: é o método que inicia o "Cipher", cifra, recebendo o parâmetro o tipo de operação a cifrar ou decifrar `opmode` alem de a chave de criptografia e o IV.
@@ -45,7 +45,7 @@ Fonte: https://docs.oracle.com/javase/7/docs/api/javax/crypto/Cipher.html#doFina
 **Inicialmente iremos testar apenas a função de decifragem. Use o projeto3Aes para auxiliar a responder as questões. 
 Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos codificados em hexa) e o seu objetivo é recuperar o texto plano/texto decifrado. A resposta de cada questão é o texto decifrado (frase em português).**
 
-   **3.1**
+- **3.1**
    - Chave CBC: `53efb4b1157fccdb9902676329debc52`
    - IV: `d161fbaa4c64ecf7d2c4abd885751273`
    - Texto cifrado em modo CBC: `701f7fa45d9bb922c3cb15a519ba40ede1769eb753650886d6e69ebcad9c2816002679896a65a921d25e00793078474e3dbeca9a2838031c490e5ae9d1ea143f`
@@ -61,7 +61,7 @@ Nas questões seguintes você recebe uma chave AES e um texto cifrado (ambos cod
 <br/>
 
 
-   **3.2**
+- **3.2**
    - Chave CTR: a05e2679204241af07f6857d150a1fcd
    - IV: 468ce1126a37b07138e78eab48344712
    - Texto cifrado em modo CTR (IV+texto cifrado):
@@ -104,11 +104,7 @@ Dessa forma ele garante a integridade da mensagem.
 
 ---
 
-6. **(Peso: 50% da nota da tarefa) Desenvolva um programa que usa criptografia autenticada no modo
-GCM e PBKDF2 para implementar uma aplicação útil. Você é livre para criar seu próprio exemplo para
-implementar (cifrar arquivos, jogos que usam criptografia, ...) !! NÃO É PERMITIDO: ter chaves e IV fixos
-e escritos no próprio código. Parâmetros devem ser guardados cifrados em arquivo (não podem ser
-guardados em texto plano).**
+6. **(Peso: 50% da nota da tarefa) Desenvolva um programa que usa criptografia autenticada no modo GCM e PBKDF2 para implementar uma aplicação útil. Você é livre para criar seu próprio exemplo para implementar (cifrar arquivos, jogos que usam criptografia, ...) !! NÃO É PERMITIDO: ter chaves e IV fixos e escritos no próprio código. Parâmetros devem ser guardados cifrados em arquivo (não podem ser guardados em texto plano).**
     
    6.1
    - **O código fonte deve ser postado no moodle, juntamente com um tutorial de execução da aplicação. Deve ser possível executar a aplicação com os arquivos anexados dentro do código.**
@@ -126,7 +122,7 @@ guardados em texto plano).**
       **deve ser apresentado o código sendo executado (aplicação rodando)**
 
       <br/>
-      
+
       6.2.3
       **deve ser explicado o código, chamando a atenção para os requisitos pedidos (GCM, PBKDF2, ausência de chaves e IV fixos, parâmetros corretos). Ambos os autores devem apresentar uma parte da gravação. O link do vídeo deve ser disponibilizado na entrega da tarefa, juntamente
       com o código fonte. Pode ser feita a gravação com o celular ou outro software de sua escolha. Não precisa ser nada muito elaborado, desde que seja possível escutar bem a voz, visualizar bem a execução e a apresentação do código. Procure usar fontes grandes para apresentar o código. Lembre de defender bem a sua ideia e de cumprir os requisitos exigidos**
