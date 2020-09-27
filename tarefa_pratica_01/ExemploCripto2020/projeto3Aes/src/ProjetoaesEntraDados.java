@@ -1,10 +1,9 @@
 
 /**
  *
- * Nesse projeto você irá programar dois sistemas de decifragem, um usando o AES em modo CBC e outro
- * usando o AES no modo contador (counter mode – CTR). Em ambos os casos um IV de 16 bytes é
- * escolhido de forma aleatória. Para o modo CBC use o esquema de padding PKCS5. Para o modo CTR use
- * NoPadding.
+ * @author Carla
+ * @version 2.0
+ * Usando o provider da Sun.
  */
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -15,11 +14,8 @@ import java.security.SecureRandom;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
-import javax.crypto.NoSuchPaddingException;
+import javax.crypto.*;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 import org.apache.commons.codec.DecoderException;
@@ -35,44 +31,43 @@ public class ProjetoaesEntraDados {
     private SecretKeySpec secretKey;
 
     public void inicia() throws NoSuchAlgorithmException, NoSuchPaddingException, NoSuchProviderException {
-        // Instancia o cipher
-        cipher = Cipher.getInstance("AES/CTR/NoPadding");
-        //cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher = Cipher.getInstance("AES/GCM/NoPadding");
        
-          // Gera uma chave AES
-//        System.out.print("Gerando chave \t-> "); 
-//        KeyGenerator sKenGen = KeyGenerator.getInstance("AES"); 
-//        aesKey = sKenGen.generateKey();
-//        System.out.println("Chave AES \t= " + Hex.encodeHexString(aesKey.getEncoded()));
-//        
-        // Chave na String
+        System.out.print("Gerando chave \t-> "); 
+        KeyGenerator sKenGen = KeyGenerator.getInstance("AES"); 
+        aesKey = sKenGen.generateKey();
+        System.out.println("Chave AES \t= " + Hex.encodeHexString(aesKey.getEncoded()));
+
+        String senha = "123456789";
+        String salt;
+        int it = 10000;
+
+        salt = getSalt();
+        System.out.println("chave usando PBKDF2: " + generateDerivedKey(senha, salt, it));
         
-        String chave1 = "53efb4b1157fccdb9902676329debc52";
-        try {
-            key = Hex.decodeHex(chave1.toCharArray());
-        } catch (DecoderException ex) {
-            Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        secretKey = new SecretKeySpec(key, "AES");
-         
-        // Gerando o iv com SecureRandom
-        System.out.print("Gerando IV \t-> "); 
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG", "SUN");
-        iv = new byte[16];
-        random.nextBytes(iv);
-        ivSpec = new IvParameterSpec(iv);
-        System.out.println("IV \t= " + Hex.encodeHexString(iv));
-        
-        /**
-        // IV na String
-         String iv1 = "2e4d285ae4837d9c746fc36a18dc2758";
-         
-          try { iv = Hex.decodeHex(iv1.toCharArray()); } catch
-          (DecoderException ex) {
-          Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE,
-          null, ex); } ivSpec = new IvParameterSpec(iv);
-         */
     } // fim inicia
+
+    public static String generateDerivedKey(String password, String salt, Integer iterations) {
+        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), iterations, 128);
+        SecretKeyFactory pbkdf2;
+        String derivedPass = null;
+        try {
+            pbkdf2 = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
+            SecretKey sk = pbkdf2.generateSecret(spec);
+            derivedPass = Hex.encodeHexString(sk.getEncoded());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return derivedPass;
+    }
+
+    public String getSalt() throws NoSuchAlgorithmException {
+        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
+        byte[] salt = new byte[16];
+        sr.nextBytes(salt);
+        return Hex.encodeHexString(salt);
+    }
+    
 
     public String encrypt(String strToEncrypt) {
         try {
@@ -83,37 +78,19 @@ public class ProjetoaesEntraDados {
             }
             cipher.init(Cipher.ENCRYPT_MODE, aesKey, ivSpec);
             //cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
-            final String encryptedString = Hex.encodeHexString(cipher.doFinal(strToEncrypt.getBytes()));
-            return encryptedString;
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+            return Hex.encodeHexString(cipher.doFinal(strToEncrypt.getBytes()));
+        } catch (NoSuchAlgorithmException 
+            | NoSuchPaddingException 
+            | InvalidKeyException 
+            | InvalidAlgorithmParameterException 
+            | IllegalBlockSizeException
+            | BadPaddingException e) {
         }
         return null;
 
     }
 
-    public String decrypt(String dec) throws InvalidKeyException, InvalidAlgorithmParameterException {
-        try {
-
-            cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
-            //cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
-            byte[] embytes = {};
-            try {
-                embytes = Hex.decodeHex(dec.toCharArray());
-            } catch (DecoderException ex) {
-                Logger.getLogger(ProjetoaesEntraDados.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            String decryptedString = new String(cipher.doFinal(embytes));
-
-            return decryptedString;
-
-        } catch (IllegalBlockSizeException | BadPaddingException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
-    public static void main(String args[]) throws InvalidKeyException, InvalidAlgorithmParameterException {
+    public static void main(String args[]) {
         ProjetoaesEntraDados obj = new ProjetoaesEntraDados();
 
         String paraCifrar;
@@ -125,7 +102,5 @@ public class ProjetoaesEntraDados {
         System.out.println("Mensagem original = " + paraCifrar);
         String cifrada = obj.encrypt(paraCifrar);
         System.out.println("Mensagem cifrada = " + cifrada);
-        String decifrada = obj.decrypt(cifrada);
-        System.out.println("Mensagem decifrada = " + decifrada);
     }
 }

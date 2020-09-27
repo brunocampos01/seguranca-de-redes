@@ -1,2 +1,0 @@
-questao de HASH e MAC
-modificação de conteudo
