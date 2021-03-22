@@ -126,7 +126,6 @@
 - Se tem **cifragem**, tem confidencialidade
 - Se tem **hash com chave**, tem autenticidade
 
-
 ### Exercícios
 > **Cite os dois tipos principais de algoritmos criptográficos.**
 <br/>
@@ -476,6 +475,50 @@ NOTA: é criptografia autenticada. Encrypt-then-MAC
 > **f) explicação do(s) comando(s) openssl de Bob.**
 <br/>
 > Bob precisa executar o mesmo comando que Alice executou e conferir se a saída, valor de HMAC, é o mesmo que Alice havia lhe enviado. 
+
+---
+
+### Criptografia Assimétrica
+
+1. Explique o funcionamento da criptografia assimétrica. 
+> Uma chave “tranca” e outra chave “libera” qualquer coisa enviada pelo seu par ( “assimétrica”). Um chave é mantida em segredo (privada) e outra torna-se pública então para isso é necessário um “guardador” confiável da chave pública.
+<br/>
+> O passo a passo é:
+> Passo 1: receptor guarda chave pública com autoridade pública
+confiável e mantém em segredo a chave privada
+> Passo 2: para enviar a msg, o emissor procura a chave pública do receptor e usa esta chave para cifrar a msg
+> Passo 3: o receptor (e apenas ele) pode usar a chave privada que decifra aquela msg
+
+2. Dê exemplos de algoritmos assimétricos.
+> RSA, Elliptic Curve, Algoritmos de Assinatura: RSA-PSS (PKCS#1, ISO/IEC 9796-2), DSA (FIPS PUB 186-3, ISO/IEC 14888-3), ECDSA
+
+3. Quais as vantagens e desvantagens dos algoritmos assimétricos?
+> Vantagens: chaves públicas amplamente distribuídas, provê assinatura digital
+> Desvantagens: vagaroso, distribuição de chaves
+
+
+### Certificado Digital
+
+8. Explique o que é um certificado digital.
+> É uma estrutura de dados que é gerada e assinada por uma entidade confiável, garantindo a autenticidade dos dados.
+
+9. O que é assinatura digital?
+> Assinar significa usar a chave privada (que é segredo e o dono não revela a ninguém) para cifrar uma msg. Assinatura digital é uma maneira segura de assinar  documentos que precisam transitar em meio eletrônico. 
+
+11.Para que serve a assinatura que existe no certificado digital? Explique detalhadamente como é feita essa assinatura.
+> Toda assinatura digital está associada a um certificado digital e é por meio dele que os dados do usuário ficarão protegidos e sem risco de serem violados.
+
+12.Explique detalhadamente como é verificada a assinatura de um certificado digital.
+> Por exemplo, será enviado um arquivo de texto de modo seguro. Alice, que vai enviar o arquivo, publica a chave pública para verificação de assinaturas. O arquivo é cifrado, depois executado uma função hash, este hash do documento é inserido no algoritmo criptográfico assimétrico juntamente com a chave privada de Alice, como retorno é recebido a assinatura digital.
+
+14.Como um criptosistema de chave pública resolve o problema do gerenciamento de chaves?
+> Criptosistemas de chave pública resolvem o problema da distribuição da chave secreta (desde que um canal seguro para comunicação de chaves públicas possa ser implementado) sendo que cada entidade tem um PAR de chaves: pública e privada
+<br/>
+> <img src="img/assinatura_digital.png" align="center" height=auto width=50%/>
+<br/>
+
+
+---
 
 ### Bizus
 - [Cheat sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md)
