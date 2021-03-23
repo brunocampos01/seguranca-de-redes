@@ -408,72 +408,74 @@ Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob 
 ## Derivação de Chave
 
 
-> **O que é uma função KDF?**
-<br/>
+**O que é uma função KDF?**
 > Key Derivation Function (KDF) é uma função de derivação de chave.
 
-> **Como funciona o PBKDF2? Quais os parâmetros necessários para o seu funcionamento?**
-<br/>
+**Como funciona o PBKDF2? Quais os parâmetros necessários para o seu funcionamento?**
 > É uma função de derivação de chave. O seu funcionamento é fazer a derivação de senha de usuário. Os parâmetros são: salt, password, número de iterações (número de vezes que a função PRF é executada). 
 
-> **Usando a notação descrita abaixo, suponha que A quer enviar uma mensagem M para B. As partes A e B compartilham uma chave simétrica K. Faça:**
+**Usando a notação descrita abaixo, suponha que A quer enviar uma mensagem M para B. As partes A e B compartilham uma chave simétrica K. Faça:**
 <br/>
-> **a) Responda SIM ou NÃO em cada quadrado em branco;**
-> **Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.**
+**a) Responda SIM ou NÃO em cada quadrado em branco;**
+**Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.**
 > <img src="img/67.png" align="center" height=auto width=100%/>
-<br/>
+> <br/>
 > 1. Integridade: pq tem hash e este hash é recalculado pelo receptor.
-<br/>
+> <br/>
 NOTA:Não tem chave, logo não tem autenticidade.
-<br/>
+> <br/>
 > 2. Autenticidade: somente A e B compartilham a K.Integridade: pq tem hash e este hash é recalculado pelo receptor.
-<br/>
-NOTA: O que esta sendo cifrado é o Hash, logo a mensagem esta em claro.
+> <br/>
+> NOTA: O que esta sendo cifrado é o Hash, logo a mensagem esta em claro.
 <br/>
 > 3. Integridade: pq tem hash e este hash é recalculado pelo receptor. Autenticidade. somente A e B compartilham a K
-<br/>
+> <br/>
 > 4. Confidencialidade: a mensagem vai criptografada E(M). Autenticidade: somente A e B compartilham a K.
-<br/>
+> <br/>
 > 5. Confidencialidade. a mensagem vai criptografada E(M).Integridade: pq tem hash e este hash é recalculado pelo receptor. Autenticidade: somente A e B compartilham a K1.
-<br/>
-NOTA: é criptografia autenticada. Encrypt-then-MAC
+> <br/>
+> NOTA: é criptografia autenticada. Encrypt-then-MAC
 
 
 ### OpenSSL
 
-> **Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.**
-> <br/>
-> Construa os comandos que Alice e Bob devem usar.
-> <br/>
-> Sua resposta deve conter:
-> <br/>
-> **a) comando(s) openssl de Alice;**
+**Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.**
+
 <br/>
+
+Construa os comandos que Alice e Bob devem usar.
+<br/>
+Sua resposta deve conter:
+<br/>
+**a) comando(s) openssl de Alice;**
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
-> <br/>
-> <br/>
-> **b) explicação do(s) comando(s) openss de Alice;**
-> <br/>
+
+<br/>
+<br/>
+
+**b) explicação do(s) comando(s) openss de Alice;**
 > Alice quer garantir a integridade da mensagem, então para isso é necessário usar hash com chave (HMAC). O comando calcula o MAC do arquivo t1.txt usando a chave aabbcc.
-> <br/>
-> <br/>
-> **c) cite o que Alice envia para Bob;**
-> <br/>
+
+<br/>
+<br/>
+
+**c) cite o que Alice envia para Bob;**
 > Supondo que Alice e Bob já tenham compartilhado a chave, Alice precisa enviar o arquivo e o calculo (valor do HMAC) que é a saida deste comando
 > <br/>
 > <br/>
-> **d) cite o que Bob recebe de Alice;**
-> <br/>
+**d) cite o que Bob recebe de Alice;**
 > Bob recebe o arquivo t1.txt e o valor do HMAC para recalcular o HMAC e assim conseguir conferir se esta igual.
-> <br/>
-> <br/>
-> **e) comando(s) openssl de Bob;**
-> <br/>
+
+<br/>
+<br/>
+
+**e) comando(s) openssl de Bob;**
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
-> <br/>
-> <br/>
-> **f) explicação do(s) comando(s) openssl de Bob.**
-> <br/>
+
+<br/>
+<br/>
+
+**f) explicação do(s) comando(s) openssl de Bob.**
 > Bob precisa executar o mesmo comando que Alice executou e conferir se a saída, valor de HMAC, é o mesmo que Alice havia lhe enviado. 
 
 ---
