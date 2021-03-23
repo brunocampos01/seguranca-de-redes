@@ -415,19 +415,21 @@ Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob 
 > É uma função de derivação de chave. O seu funcionamento é fazer a derivação de senha de usuário. Os parâmetros são: salt, password, número de iterações (número de vezes que a função PRF é executada). 
 
 **Usando a notação descrita abaixo, suponha que A quer enviar uma mensagem M para B. As partes A e B compartilham uma chave simétrica K. Faça:**
+
 <br/>
-**a) Responda SIM ou NÃO em cada quadrado em branco;**
-**Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.**
+
+**a) Responda SIM ou NÃO em cada quadrado em branco; Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.**
+
 > <img src="img/67.png" align="center" height=auto width=100%/>
 > <br/>
 > 1. Integridade: pq tem hash e este hash é recalculado pelo receptor.
 > <br/>
-NOTA:Não tem chave, logo não tem autenticidade.
+> NOTA:Não tem chave, logo não tem autenticidade.
 > <br/>
 > 2. Autenticidade: somente A e B compartilham a K.Integridade: pq tem hash e este hash é recalculado pelo receptor.
 > <br/>
 > NOTA: O que esta sendo cifrado é o Hash, logo a mensagem esta em claro.
-<br/>
+> <br/>
 > 3. Integridade: pq tem hash e este hash é recalculado pelo receptor. Autenticidade. somente A e B compartilham a K
 > <br/>
 > 4. Confidencialidade: a mensagem vai criptografada E(M). Autenticidade: somente A e B compartilham a K.
