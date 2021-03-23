@@ -442,38 +442,38 @@ NOTA: é criptografia autenticada. Encrypt-then-MAC
 ### OpenSSL
 
 > **Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.**
-<br/>
+> <br/>
 > Construa os comandos que Alice e Bob devem usar.
-<br/>
+> <br/>
 > Sua resposta deve conter:
-<br/>
+> <br/>
 > **a) comando(s) openssl de Alice;**
 <br/>
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
-<br/>
-<br/>
+> <br/>
+> <br/>
 > **b) explicação do(s) comando(s) openss de Alice;**
-<br/>
+> <br/>
 > Alice quer garantir a integridade da mensagem, então para isso é necessário usar hash com chave (HMAC). O comando calcula o MAC do arquivo t1.txt usando a chave aabbcc.
-<br/>
-<br/>
+> <br/>
+> <br/>
 > **c) cite o que Alice envia para Bob;**
-<br/>
+> <br/>
 > Supondo que Alice e Bob já tenham compartilhado a chave, Alice precisa enviar o arquivo e o calculo (valor do HMAC) que é a saida deste comando
-<br/>
-<br/>
+> <br/>
+> <br/>
 > **d) cite o que Bob recebe de Alice;**
-<br/>
+> <br/>
 > Bob recebe o arquivo t1.txt e o valor do HMAC para recalcular o HMAC e assim conseguir conferir se esta igual.
-<br/>
-<br/>
+> <br/>
+> <br/>
 > **e) comando(s) openssl de Bob;**
-<br/>
+> <br/>
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
-<br/>
-<br/>
+> <br/>
+> <br/>
 > **f) explicação do(s) comando(s) openssl de Bob.**
-<br/>
+> <br/>
 > Bob precisa executar o mesmo comando que Alice executou e conferir se a saída, valor de HMAC, é o mesmo que Alice havia lhe enviado. 
 
 ---
@@ -482,11 +482,12 @@ NOTA: é criptografia autenticada. Encrypt-then-MAC
 
 1. Explique o funcionamento da criptografia assimétrica. 
 > Uma chave “tranca” e outra chave “libera” qualquer coisa enviada pelo seu par ( “assimétrica”). Um chave é mantida em segredo (privada) e outra torna-se pública então para isso é necessário um “guardador” confiável da chave pública.
-<br/>
 > O passo a passo é:
-> Passo 1: receptor guarda chave pública com autoridade pública
-confiável e mantém em segredo a chave privada
+> <br/>
+> Passo 1: receptor guarda chave pública com autoridade pública confiável e mantém em segredo a chave privada
+> <br/>
 > Passo 2: para enviar a msg, o emissor procura a chave pública do receptor e usa esta chave para cifrar a msg
+> <br/>
 > Passo 3: o receptor (e apenas ele) pode usar a chave privada que decifra aquela msg
 
 2. Dê exemplos de algoritmos assimétricos.
@@ -514,7 +515,7 @@ confiável e mantém em segredo a chave privada
 14.Como um criptosistema de chave pública resolve o problema do gerenciamento de chaves?
 > Criptosistemas de chave pública resolvem o problema da distribuição da chave secreta (desde que um canal seguro para comunicação de chaves públicas possa ser implementado) sendo que cada entidade tem um PAR de chaves: pública e privada
 <br/>
-> <img src="img/assinatura_digital.png" align="center" height=auto width=50%/>
+<img src="img/assinatura_digital.png" align="center" height=auto width=50%/>
 <br/>
 
 
