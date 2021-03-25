@@ -63,16 +63,16 @@
 
 
 ### Exercícios
-> **Quais as três características essenciais de segurança? Cite um exemplo prático de cada característica.**
-<br/>
-<br/>
+Quais as três características essenciais de segurança? Cite um exemplo prático de cada característica.
+> <br/>
+> <br/>
 > As propriedades de segurança de informação são as seguintes:
 > - Confidencialidade: somente usuários confiáveis tem acesso à informação. 
 > Ex: Alice é uma usuária legítima e pode acessar os sistemas.
 > - Integridade: é a garantia que as informações não sofreram alterações. Ex: ninguém corrompe as informações de Alice. 
 > - Disponibilidade: é a garantia que usuários legítimos sempre teram acesso as informações.Ex: os sistemas que Alice usa estão sempre disponíveis
 
-> **Cite e explique três tipos importantes de ataques feitos na Internet.**
+Cite e explique três tipos importantes de ataques feitos na Internet.
 > <br/>
 > **Injection:** É um ataque que permite inserir dados não confiáveis enganando o sistema para executar comandos não intencionais. Por exemplo, no campo de inserção de login e senha, o atacante insere um query SQL para obter alguma informação do banco de dados.
 > <br/>
@@ -80,16 +80,17 @@
 > <br/>
 > **Known Vulnerabilities:** Se quaisquer componentes com vulnerabilidades conhecidas forem usados poralguma aplicação, isso pode levar brechas de segurança. Por exemplo, uma versão do JQuerydesatualizada. fonte: https://www.greycampus.com/blog/information-security/owasp-top-vulnerabilities-in-web-application
 
-> **O que é uma vulnerabilidade? Conceitue e cite um exemplo.**
-<br/>
-<br/>
+O que é uma vulnerabilidade? Conceitue e cite um exemplo.
+> <br/>
+> <br/>
 > São falhas ou features que podem ser exploradas para um possível ataque. 
-<br/>
+> <br/>
 > Ex: o github emite alertas de vulnerabilidades sobre as dependencias de um projeto que apresentam vulnerabilidades, do tipo uma versão de uma biblioteca desatualizada.
-<br/>
+> <br/>
 > Ex: utilizando o metasploit, pode ser feito um ataque de dicionário para explorar vulnerabilidades. Owasp utiliza senha e login padrão.
 
 O que é um ataque? Conceitue e cite um exemplo.
+> <br/>
 > Ataque são ações para violar a segurança. Exploram as vulnerabilidades.
 
 ---
@@ -139,12 +140,12 @@ O que é um ataque? Conceitue e cite um exemplo.
 > - Combinação
 
 
-> **Explique o funcionamento da criptografia simétrica usando a figura 1.**
+Explique o funcionamento da criptografia simétrica usando a figura 1.
 > <img src="img/critpografia_simetrica.png" align="center" height=auto width=100%/>
-<br/>
-<br/>
+> <br/>
+> <br/>
 Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem usando uma **cifra** **E**
-<br/>
+> <br/>
 > - A cifra E tem os seguintes parametros (K, M, N)
 >  - K: key, é a chave compartilhada entre Bob e Alice
 >  - M: mensagem
@@ -152,65 +153,65 @@ Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem
 >  - C: mensagem cifrada
 > Bob utiliza uma cifra para descriptografar a mensagem **c** recebida. Para isso, ele utiliza o IV(nonce) e a chave para descriptografar a mensagem.
 
-> **Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e comente.**
-<br/>
-<br/>
-Chave de uso único: é usado para cifra uma mensagem. Não precisa de nonce. Ex: email cifrado
-<br/>
-Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário usar nonce. Ex: SSL
+Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e comente.
+> <br/>
+> <br/>
+> Chave de uso único: é usado para cifra uma mensagem. Não precisa de nonce. Ex: email cifrado
+> <br/>
+> Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário usar nonce. Ex: SSL
 
-> **Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.**
-<br/>
-<br/>
-> 
+Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.
+> <br/>
+> <br/>
 > São geradores de números aleatórios ou pseudo-aleatórios.
-<br/>
+> <br/>
 > Ex: RC4
 
 
-> **Explique o que é uma cifra de bloco. Cite nomes de algoritmos deste tipo.**
-<br/>
-<br/>
+Explique o que é uma cifra de bloco. Cite nomes de algoritmos deste tipo.
+> <br/>
+> <br/>
 > Uma cifra de bloco é um algoritmo determinístico que opera sobre agrupamentos de bits de tamanho fixo, chamados de blocos, com uma transformação invariável que é especificada por uma chave simétrica.
-<br/>
+> <br/>
 > ex: AES
 
-> **O que são os “modos de operação” das cifras de bloco?**
-<br/>
-<br/>
+O que são os “modos de operação” das cifras de bloco?
+> <br/>
+> <br/>
 >  Maneiras diferentes de organizar a cifragem de longos textos planos, por exemplo email ou arquivo, com cifras de bloco.
 
-> **Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que podem ser cifradas com a mesma chave? Explique e dê exemplo.**
-<br/>
-<br/>
+Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que podem ser cifradas com a mesma chave? Explique e dê exemplo.
+> <br/>
+> <br/>
 > Para este modo de operação existe um limite pois pode haver um ataque ativo de adulteração (tampering). Exemplos de limites:
-<br/>
+> <br/>
 > AES 128 bits de bloco: depois de 248 blocos AES, DEVE ser trocada a chave
-<br/>
+> <br/>
 > 3DES 64 bits de bloco: depois de 216 blocos 3DES, DEVE ser trocada a chave 
 
-> **A chave de um algoritmo de criptografia simétrica tem 3 bits. O IV tem 2 bits. Supondo que essa chave será usada para cifrar 35 mensagens:**
-<br/>
-<br/>
-> **a) explique para que serve e como é usado o IV;**
-<br/>
+A chave de um algoritmo de criptografia simétrica tem 3 bits. O IV tem 2 bits. Supondo que essa chave será usada para cifrar 35 mensagens:
+> <br/>
+> <br/>
+
+a) explique para que serve e como é usado o IV
+> <br/>
 > O IV serve para que a chave possa ser usada mais de uma vez. É adicionado no final da chave. Neste caso temos (3 bits de chave + 2 bits de IV) no total=2^5 mensagens que podem ser enviadas com segurança.
->
-> **b) considerando o uso do IV, explique quantas chaves diferentes podem existir;**
-<br/>
-2^5
-> 
-> **c) será possível cifrar todas as 35 mensagens e garantir a segurança contra ataques ao texto cifrado?**
-<br/>
+
+b) considerando o uso do IV, explique quantas chaves diferentes podem existir
+> <br/>
+> 2^5
+
+c) será possível cifrar todas as 35 mensagens e garantir a segurança contra ataques ao texto cifrado?
+> <br/>
 > Não, no máximo 32 mensagens. 
 
-> **Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?**
-<br/>
-<br/>
+Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
+> <br/>
+> <br/>
 > Fornecem APENAS CONFIDENCIALIDADE 
-<br/>
+> <br/>
 > Problema de distribuição de chaves
-<br/>
+> <br/>
 > Mais rápidos que os sistemas assimétricos
 
 <br/>
