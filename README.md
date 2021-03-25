@@ -63,8 +63,8 @@
 
 
 ### Exercícios
+
 Quais as três características essenciais de segurança? Cite um exemplo prático de cada característica.
-> <br/>
 > As propriedades de segurança de informação são as seguintes:
 > - Confidencialidade: somente usuários confiáveis tem acesso à informação. 
 > Ex: Alice é uma usuária legítima e pode acessar os sistemas.
@@ -155,7 +155,6 @@ Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.
 
 Explique o que é uma cifra de bloco. Cite nomes de algoritmos deste tipo.
 > Uma cifra de bloco é um algoritmo determinístico que opera sobre agrupamentos de bits de tamanho fixo, chamados de blocos, com uma transformação invariável que é especificada por uma chave simétrica.
-> <br/>
 > ex: AES
 
 O que são os “modos de operação” das cifras de bloco?
