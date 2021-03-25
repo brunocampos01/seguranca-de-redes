@@ -79,7 +79,6 @@ Cite e explique três tipos importantes de ataques feitos na Internet.
 > **Known Vulnerabilities:** Se quaisquer componentes com vulnerabilidades conhecidas forem usados poralguma aplicação, isso pode levar brechas de segurança. Por exemplo, uma versão do JQuerydesatualizada. fonte: https://www.greycampus.com/blog/information-security/owasp-top-vulnerabilities-in-web-application
 
 O que é uma vulnerabilidade? Conceitue e cite um exemplo.
-> <br/>
 > São falhas ou features que podem ser exploradas para um possível ataque. 
 > <br/>
 > Ex: o github emite alertas de vulnerabilidades sobre as dependencias de um projeto que apresentam vulnerabilidades, do tipo uma versão de uma biblioteca desatualizada.
@@ -133,12 +132,11 @@ O que é um ataque? Conceitue e cite um exemplo.
 
 
 Explique o funcionamento da criptografia simétrica usando a figura 1.
-> <br/>
 > <img src="img/critpografia_simetrica.png" align="center" height=auto width=100%/>
 > <br/>
 > <br/>
+
 Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem usando uma **cifra** **E**
-> <br/>
 > - A cifra E tem os seguintes parametros (K, M, N)
 >  - K: key, é a chave compartilhada entre Bob e Alice
 >  - M: mensagem
@@ -147,7 +145,6 @@ Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem
 > Bob utiliza uma cifra para descriptografar a mensagem **c** recebida. Para isso, ele utiliza o IV(nonce) e a chave para descriptografar a mensagem.
 
 Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e comente.
-> <br/>
 > Chave de uso único: é usado para cifra uma mensagem. Não precisa de nonce. Ex: email cifrado
 > <br/>
 > Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário usar nonce. Ex: SSL
@@ -176,20 +173,15 @@ Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que pod
 A chave de um algoritmo de criptografia simétrica tem 3 bits. O IV tem 2 bits. Supondo que essa chave será usada para cifrar 35 mensagens:
 
 a) explique para que serve e como é usado o IV
-> <br/>
 > O IV serve para que a chave possa ser usada mais de uma vez. É adicionado no final da chave. Neste caso temos (3 bits de chave + 2 bits de IV) no total=2^5 mensagens que podem ser enviadas com segurança.
 
 b) considerando o uso do IV, explique quantas chaves diferentes podem existir
-> <br/>
 > 2^5
 
 c) será possível cifrar todas as 35 mensagens e garantir a segurança contra ataques ao texto cifrado?
-> <br/>
 > Não, no máximo 32 mensagens. 
 
 Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
-> <br/>
-> <br/>
 > Fornecem APENAS CONFIDENCIALIDADE 
 > <br/>
 > Problema de distribuição de chaves
@@ -246,26 +238,22 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 
 
 ### Exercícios
-> **Quais as propriedades das funções hash criptográficas?**
-<br/>
-<br/>
+Quais as propriedades das funções hash criptográficas?
 >- Garantem resistência contra "preimage":  sabendo o valor do hash é computacionalmente inviável encontrar a mensagem que deu origem àquele valor (sentido inverso da função é difícil).
+> <br/>
 >- Garantem resistência contra 'second pre-image": computacionalmente inviável encontrar uma 2ª msg que possui o mesmo valor hash que uma 1ª msg conhecida.
 >- Garantem resistência a colisão: muito difícil encontrar duas mensagens que geram o mesmo valor de saída da função hash.
 
 
 > **Explique o conceito de hash sem chave.**
-<br/>
-<br/>
 > O conceito e funcionamento é o seguinte: o usuário prepara a sua mensagem inserindo no final da mensagem um hash. O usuário que irá receber a mensagem, recebe também o cálculo de hash, valor do HMAC. Então ele abre e recalcula o hash para comparar e garantir que não houve quebra de integridade.
 
-> **Explique o conceito de hash com chave. Por que o hash com chave fornece integridade e autenticidade?**
-<br/>
-<br/>
+Explique o conceito de hash com chave. Por que o hash com chave fornece integridade e autenticidade?
 >- Por que fornece integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
+> <br/>
 >- Por que fornece autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
 
-> **Explique em detalhes o funcionamento representado na figura 3. A figura 3(a) é igual à figura 3(b). Na figura 3(a), o cálculo do MAC é chamado de TAG. Na figura 3(b), o cálculo do MAC é chamado de C e é calculado assim: MAC = C(K, M). A figura 3(b) está no livro do Stallings. O MAC pode ser chamado de: mac, hash com chave, código de autenticação de mensagem e tag.**
+Explique em detalhes o funcionamento representado na figura 3. A figura 3(a) é igual à figura 3(b). Na figura 3(a), o cálculo do MAC é chamado de TAG. Na figura 3(b), o cálculo do MAC é chamado de C e é calculado assim: MAC = C(K, M). A figura 3(b) está no livro do Stallings. O MAC pode ser chamado de: mac, hash com chave, código de autenticação de mensagem e tag.
 > <img src="img/hash_com_chave.png" align="center" height=auto width=100%/>
 > <img src="img/mac.png" align="center" height=auto width=100%/>
 > <br/>
@@ -277,7 +265,7 @@ Cite nomes de algoritmos de hash sem chave e com chave considerados importantes.
 > <br/>
 >  Com chave: CMAC e CBC-MAC, HMAC
 
-> Considerando que um código Java de um programa envia pela rede a mensagem e o SHA-256 da mensagem, conforme representado na figura 4, responda:
+Considerando que um código Java de um programa envia pela rede a mensagem e o SHA-256 da mensagem, conforme representado na figura 4, responda:
 > <br/>
 > <img src="img/sha.png" align="center" height=auto width=100%/>
 
@@ -295,7 +283,9 @@ b) Se o item a é possível, explique como impedir essa situação
 
 De acordo com o link https://crackstation.net/hashing-security.htm, comente o que é certo e o que é errado quando se usa hashes (com salt) para guardar senhas.
 >- É certo usar salt aleatório e com comprimento adequado
+> <br/>
 >- Usar o mesmo salt apenas uma vez
+> <br/>
 >- Usar algortimos de criptografia já existentes e aprovados pela comunidade
 
 
@@ -304,7 +294,6 @@ Considerando que Alice quer enviar a mensagem para Bob, faça:
 <br/>
 
 a)Desenhe como é gerado o MAC de uma mensagem no lado da Alice.
-> <br/>
 > <img src="img/origem.png" align="center" height=auto width=100%/>
 
 <br/>
@@ -312,24 +301,26 @@ a)Desenhe como é gerado o MAC de uma mensagem no lado da Alice.
 
 b) Desenhe como é verificado este MAC no lado de Bob
 > <img src="img/destino.png" align="center" height=auto width=100%/>
+
 <br/>
 <br/>
+
 c) Explique como e quais características são garantidas pelo MAC (CID)
 > <br/>
 >- integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
+> <br/>
 >- autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
 
 <br/>
 <br/>
 
-**Desenhe usando criptografia simétrica, hash e/ou MAC combinados (não é obrigatório o uso de todos) de forma que os seguintes objetivos sejam atendidos na comunicação de mensgens entre Alice e Bob.
+Desenhe usando criptografia simétrica, hash e/ou MAC combinados (não é obrigatório o uso de todos) de forma que os seguintes objetivos sejam atendidos na comunicação de mensgens entre Alice e Bob.
 <br/>
+
 a) Autenticação de mensagem enviada de Alice para Bob.
-> <br/>
-> <br/>
 > <img src="img/origem.png" align="center" height=auto width=100%/>
 <br/>
-Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob utilizar a chave para recalcular o MAC saberá que foi de Alice.
+> Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob utilizar a chave para recalcular o MAC saberá que foi de Alice.
 
 <br/>
 <br/>
@@ -362,7 +353,6 @@ Como é que a criptografia autenticada consegue garantir a confidencialidade, a 
 > O objetivo da AE é: garantir confidencialidade, INTEGRIDADE e autenticidade (da origem dos dados). Isto pode ser alcançado combinando criptografia simétrica com MAC.
 
 Quais os modos de criptografia autenticada? Represente cada um dos modos com uma figura
-> <br/>
 > Encrypt-and-Mac (E&M):
 > <br/>
 > <img src="img/encrypt_and_mac.png" align="center" height=auto width=30%/>
@@ -377,11 +367,10 @@ Quais os modos de criptografia autenticada? Represente cada um dos modos com uma
 <br/>
 
 > Quais os padrões de criptografia autenticada? Quais os padrões que a biblioteca Bouncy Castle implementa?
-<br/>
 > Os padrões (modos) da criptografia autenticada são MAC-then-encrypt, encrypt-then-MAC, encrypt-and-MAC. São as formas de organizar a "combinação entre MAC e criptografia simétrica".
 > <br/>
 > Boyce-Castle implementa:
-<br/>
+> <br/>
 > - CCM (AEAD)
 > - EAX (AEAD) 
 > - GCM (AEAD)
