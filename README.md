@@ -65,7 +65,6 @@
 ### Exercícios
 Quais as três características essenciais de segurança? Cite um exemplo prático de cada característica.
 > <br/>
-> <br/>
 > As propriedades de segurança de informação são as seguintes:
 > - Confidencialidade: somente usuários confiáveis tem acesso à informação. 
 > Ex: Alice é uma usuária legítima e pode acessar os sistemas.
@@ -73,7 +72,6 @@ Quais as três características essenciais de segurança? Cite um exemplo práti
 > - Disponibilidade: é a garantia que usuários legítimos sempre teram acesso as informações.Ex: os sistemas que Alice usa estão sempre disponíveis
 
 Cite e explique três tipos importantes de ataques feitos na Internet.
-> <br/>
 > **Injection:** É um ataque que permite inserir dados não confiáveis enganando o sistema para executar comandos não intencionais. Por exemplo, no campo de inserção de login e senha, o atacante insere um query SQL para obter alguma informação do banco de dados.
 > <br/>
 > **Broken Authentication:** A autenticação interrompida ocorre quando uma aplicação administra mal as informações relacionadas à sessão, de modo que a identidade do usuário seja comprometida. As informações podem estar na forma de cookies de sessão, senhas, chaves secretas etc.
@@ -82,7 +80,6 @@ Cite e explique três tipos importantes de ataques feitos na Internet.
 
 O que é uma vulnerabilidade? Conceitue e cite um exemplo.
 > <br/>
-> <br/>
 > São falhas ou features que podem ser exploradas para um possível ataque. 
 > <br/>
 > Ex: o github emite alertas de vulnerabilidades sobre as dependencias de um projeto que apresentam vulnerabilidades, do tipo uma versão de uma biblioteca desatualizada.
@@ -90,7 +87,6 @@ O que é uma vulnerabilidade? Conceitue e cite um exemplo.
 > Ex: utilizando o metasploit, pode ser feito um ataque de dicionário para explorar vulnerabilidades. Owasp utiliza senha e login padrão.
 
 O que é um ataque? Conceitue e cite um exemplo.
-> <br/>
 > Ataque são ações para violar a segurança. Exploram as vulnerabilidades.
 
 ---
@@ -128,19 +124,16 @@ O que é um ataque? Conceitue e cite um exemplo.
 
 ### Exercícios
 > **Cite os dois tipos principais de algoritmos criptográficos.**
-<br/>
-<br/>
 > Algoritmos simétricos que usam a mesma chave criptográfica e algoritmos assimétricos (chave pública) que usam pares de chaves públicas e podem ser amplamente disseminadas, e chaves privadas que são conhecidas apenas pelo proprietário.
 
 > **Quais são as técnicas de cifragem básicas**
-<br/>
-<br/>
 > - Substituição
 > - Permutação
 > - Combinação
 
 
 Explique o funcionamento da criptografia simétrica usando a figura 1.
+> <br/>
 > <img src="img/critpografia_simetrica.png" align="center" height=auto width=100%/>
 > <br/>
 > <br/>
@@ -155,34 +148,25 @@ Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem
 
 Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e comente.
 > <br/>
-> <br/>
 > Chave de uso único: é usado para cifra uma mensagem. Não precisa de nonce. Ex: email cifrado
 > <br/>
 > Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário usar nonce. Ex: SSL
 
 Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.
-> <br/>
-> <br/>
 > São geradores de números aleatórios ou pseudo-aleatórios.
 > <br/>
 > Ex: RC4
 
 
 Explique o que é uma cifra de bloco. Cite nomes de algoritmos deste tipo.
-> <br/>
-> <br/>
 > Uma cifra de bloco é um algoritmo determinístico que opera sobre agrupamentos de bits de tamanho fixo, chamados de blocos, com uma transformação invariável que é especificada por uma chave simétrica.
 > <br/>
 > ex: AES
 
 O que são os “modos de operação” das cifras de bloco?
-> <br/>
-> <br/>
 >  Maneiras diferentes de organizar a cifragem de longos textos planos, por exemplo email ou arquivo, com cifras de bloco.
 
 Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que podem ser cifradas com a mesma chave? Explique e dê exemplo.
-> <br/>
-> <br/>
 > Para este modo de operação existe um limite pois pode haver um ataque ativo de adulteração (tampering). Exemplos de limites:
 > <br/>
 > AES 128 bits de bloco: depois de 248 blocos AES, DEVE ser trocada a chave
@@ -190,8 +174,6 @@ Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que pod
 > 3DES 64 bits de bloco: depois de 216 blocos 3DES, DEVE ser trocada a chave 
 
 A chave de um algoritmo de criptografia simétrica tem 3 bits. O IV tem 2 bits. Supondo que essa chave será usada para cifrar 35 mensagens:
-> <br/>
-> <br/>
 
 a) explique para que serve e como é usado o IV
 > <br/>
