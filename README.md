@@ -1,7 +1,7 @@
 # Segurança da Informação e de Redes
 
-![License](https://img.shields.io/badge/Code%20License-MIT-blue.svg)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ef20eb016a4461b8e90b6bf6409ba32)](https://www.codacy.com/gh/brunocampos01/seguranca/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=brunocampos01/seguranca&amp;utm_campaign=Badge_Grade)
+![License](https://img.shields.io/badge/Code%20License-MIT-blue.svg)
 ![seguranca](https://img.shields.io/badge/UFSC-Seguran%C3%A7a%20da%20Informa%C3%A7%C3%A3o%20e%20de%20Redes-blue.svg)
 
 ## Conteúdo
@@ -89,9 +89,7 @@
 <br/>
 > Ex: utilizando o metasploit, pode ser feito um ataque de dicionário para explorar vulnerabilidades. Owasp utiliza senha e login padrão.
 
-> **O que é um ataque? Conceitue e cite um exemplo.**
-<br/>
-<br/>
+O que é um ataque? Conceitue e cite um exemplo.
 > Ataque são ações para violar a segurança. Exploram as vulnerabilidades.
 
 ---
@@ -287,78 +285,84 @@ Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário us
 > **Explique em detalhes o funcionamento representado na figura 3. A figura 3(a) é igual à figura 3(b). Na figura 3(a), o cálculo do MAC é chamado de TAG. Na figura 3(b), o cálculo do MAC é chamado de C e é calculado assim: MAC = C(K, M). A figura 3(b) está no livro do Stallings. O MAC pode ser chamado de: mac, hash com chave, código de autenticação de mensagem e tag.**
 > <img src="img/hash_com_chave.png" align="center" height=auto width=100%/>
 > <img src="img/mac.png" align="center" height=auto width=100%/>
-<br/>
-<br/>
+> <br/>
+> <br/>
 > A mensagem sai da origem A. No ponto || acontece a concatenção da mensagem (m) com a autenticação de mensagem (C) usando uma chave (K). A mensagem chega no destino B onde é autenticação de mensgem (C) é aberta usando uma chave (K). A partir disso é correto dizer que  é oferecido autenticação pois somente A e B comparttilham a chave K.
 
-
-> **Cite nomes de algoritmos de hash sem chave e com chave considerados importantes.**
-<br/>
-<br/>
+Cite nomes de algoritmos de hash sem chave e com chave considerados importantes.
 > Sem chave: Família SHA, MD5
-<br/>
+> <br/>
 >  Com chave: CMAC e CBC-MAC, HMAC
 
-> **Considerando que um código Java de um programa envia pela rede a mensagem e o SHA-256 da mensagem, conforme representado na figura 4, responda:**
-<br/>
+> Considerando que um código Java de um programa envia pela rede a mensagem e o SHA-256 da mensagem, conforme representado na figura 4, responda:
+> <br/>
 > <img src="img/sha.png" align="center" height=auto width=100%/>
-<br/>
-> **a) É possível que um atacante consiga modificar ambos: a mensagem e o SHA-256 da mensagem? O
-receptor irá identificar a modificação? Explique.**
-<br/>
-> Sobre o SHA-256 e a mensagem: é possível pois SHA-256 é hash sem chave, alem disso, o atacante poderá, com esforço computacional,encontrar o hash da mensagem. Então seria possível alterar ambos sem a vítima detectar a alteração. 
-<br/>
-<br/>
-> **b) Se o item a é possível, explique como impedir essa situação**
-<br/>
-Um algoritmo de hash com chave resolveria esssa situação, pois neste caso o atacante precisaria ter a chave secreta usada para calcular o hash. Esta chave secreta só estaria de posse dos envolvidos nesta troca de mensagem.
 
-> **De acordo com o link https://crackstation.net/hashing-security.htm, comente o que é certo e o que é errado quando se usa hashes (com salt) para guardar senhas.**
+<br/>
+
+a) É possível que um atacante consiga modificar ambos: a mensagem e o SHA-256 da mensagem? O
+receptor irá identificar a modificação? Explique.
+> Sobre o SHA-256 e a mensagem: é possível pois SHA-256 é hash sem chave, alem disso, o atacante poderá, com esforço computacional,encontrar o hash da mensagem. Então seria possível alterar ambos sem a vítima detectar a alteração. 
+
 <br/>
 <br/>
+
+b) Se o item a é possível, explique como impedir essa situação
+> Um algoritmo de hash com chave resolveria esssa situação, pois neste caso o atacante precisaria ter a chave secreta usada para calcular o hash. Esta chave secreta só estaria de posse dos envolvidos nesta troca de mensagem.
+
+De acordo com o link https://crackstation.net/hashing-security.htm, comente o que é certo e o que é errado quando se usa hashes (com salt) para guardar senhas.
 >- É certo usar salt aleatório e com comprimento adequado
 >- Usar o mesmo salt apenas uma vez
 >- Usar algortimos de criptografia já existentes e aprovados pela comunidade
 
 
-> **Considerando que Alice quer enviar a mensagem para Bob, faça:**
+Considerando que Alice quer enviar a mensagem para Bob, faça:
+
 <br/>
-> **a)Desenhe como é gerado o MAC de uma mensagem no lado da Alice.**
-<br/>
+
+a)Desenhe como é gerado o MAC de uma mensagem no lado da Alice.
+> <br/>
 > <img src="img/origem.png" align="center" height=auto width=100%/>
-<br/>
-<br/>
-> **b) Desenhe como é verificado este MAC no lado de Bob**
-> <img src="img/destino.png" align="center" height=auto width=100%/>
-<br/>
-<br/>
-> **c) Explique como e quais características são garantidas pelo MAC (CID)**
-<br/>
->- integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
->- autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
+
 <br/>
 <br/>
 
-> **Desenhe usando criptografia simétrica, hash e/ou MAC combinados (não é obrigatório o uso de todos) de forma que os seguintes objetivos sejam atendidos na comunicação de mensgens entre Alice e Bob.**
+b) Desenhe como é verificado este MAC no lado de Bob
+> <img src="img/destino.png" align="center" height=auto width=100%/>
 <br/>
-> **a) Autenticação de mensagem enviada de Alice para Bob.**
+<br/>
+c) Explique como e quais características são garantidas pelo MAC (CID)
+> <br/>
+>- integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
+>- autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
+
 <br/>
 <br/>
+
+**Desenhe usando criptografia simétrica, hash e/ou MAC combinados (não é obrigatório o uso de todos) de forma que os seguintes objetivos sejam atendidos na comunicação de mensgens entre Alice e Bob.
+<br/>
+a) Autenticação de mensagem enviada de Alice para Bob.
+> <br/>
+> <br/>
 > <img src="img/origem.png" align="center" height=auto width=100%/>
 <br/>
 Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob utilizar a chave para recalcular o MAC saberá que foi de Alice.
+
 <br/>
 <br/>
-> **b) Integridade e confidencialidade de mensagem enviada de Alice para Bob.**
+
+b) Integridade e confidencialidade de mensagem enviada de Alice para Bob.
 > <img src="img/confidencialidade_autenticidade.png" align="center" height=auto width=100%/>
-<br/>
+> <br/>
 > Fornece integridade pois o receptor poderá recalcular o MAC para verificar se a mensagem foi alterada. 
 > Fornece confidencialidade pois a mensagem tambem foi criptografada junto com o MAC.
+
 <br/>
 <br/>
-> **c) Confidencialidade, integridade e autenticidade da mensagem enviada de Alice para Bob. Explique as tarefas de emissão e as tarefas de recepção.**
+
+c) Confidencialidade, integridade e autenticidade da mensagem enviada de Alice para Bob. Explique as tarefas de emissão e as tarefas de recepção.
 > <img src="img/gcm.png" align="center" height=auto width=100%/>
-<br/>
+> <br/>
 > Alice quer enviar uma mensagem para Bob (A -> B). 
 <br/>
 > Primeiramente a mensagem é cifrada (E) usando uma chave simétrica (K1) (A -> B: E(K1, M)). Nessa etapa é garantido a confidencialidade pois só os envolvidos na comunicação é que sabem a chave. É neste momento que é gerado um texto cifrado. O texto cifrado é inserido como entrada no cálculo de MAC junto com a chave (K2). Neste momento a integridade e autenticidade são garantidos pois se a mensagem for alterada, poderá ser notado através da comparação das tags. A tag (T1) gerada é concatenada com o texto cifrado. O resultado deste processo é enviado para Bob.
@@ -368,35 +372,31 @@ Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob 
 ---
 
 ## Criptografia Autenticada
-
-> **O que é criptografia autenticada (authenticaded encryption)?**
-<br/>
+> O que é criptografia autenticada (authenticaded encryption)?
 > É a combinação da criptografia simétrica e MAC.
 
-> **Como é que a criptografia autenticada consegue garantir a confidencialidade, a integridade e a autenticidade? Explique**
-<br/>
+Como é que a criptografia autenticada consegue garantir a confidencialidade, a integridade e a autenticidade? Explique
 > O objetivo da AE é: garantir confidencialidade, INTEGRIDADE e autenticidade (da origem dos dados). Isto pode ser alcançado combinando criptografia simétrica com MAC.
 
-> **Quais os modos de criptografia autenticada? Represente cada um dos modos com uma figura**
-<br/>
+Quais os modos de criptografia autenticada? Represente cada um dos modos com uma figura
+> <br/>
 > Encrypt-and-Mac (E&M):
-<br/>
+> <br/>
 > <img src="img/encrypt_and_mac.png" align="center" height=auto width=30%/>
-<br/>
+><br/>
 > Mac-then-Encrypt (MtE):
-<br/>
+> <br/>
 > <img src="img/mac_then_encrypt.png" align="center" height=auto width=30%/>
-<br/>
+> <br/>
 > Encrypt-then-Mac (EtM):
-<br/>
-
+> <br/>
 > <img src="img/encrypt_then_mac.png" align="center" height=auto width=30%/>
 <br/>
 
-> **Quais os padrões de criptografia autenticada? Quais os padrões que a biblioteca Bouncy Castle implementa?**
+> Quais os padrões de criptografia autenticada? Quais os padrões que a biblioteca Bouncy Castle implementa?
 <br/>
 > Os padrões (modos) da criptografia autenticada são MAC-then-encrypt, encrypt-then-MAC, encrypt-and-MAC. São as formas de organizar a "combinação entre MAC e criptografia simétrica".
-<br/>
+> <br/>
 > Boyce-Castle implementa:
 <br/>
 > - CCM (AEAD)
@@ -407,19 +407,17 @@ Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob 
 ---
 
 ## Derivação de Chave
-
-
-**O que é uma função KDF?**
+O que é uma função KDF?
 > Key Derivation Function (KDF) é uma função de derivação de chave.
 
-**Como funciona o PBKDF2? Quais os parâmetros necessários para o seu funcionamento?**
+Como funciona o PBKDF2? Quais os parâmetros necessários para o seu funcionamento?
 > É uma função de derivação de chave. O seu funcionamento é fazer a derivação de senha de usuário. Os parâmetros são: salt, password, número de iterações (número de vezes que a função PRF é executada). 
 
-**Usando a notação descrita abaixo, suponha que A quer enviar uma mensagem M para B. As partes A e B compartilham uma chave simétrica K. Faça:**
+Usando a notação descrita abaixo, suponha que A quer enviar uma mensagem M para B. As partes A e B compartilham uma chave simétrica K. Faça:
 
 <br/>
 
-**a) Responda SIM ou NÃO em cada quadrado em branco; Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.**
+a) Responda SIM ou NÃO em cada quadrado em branco; Se respondeu SIM em alguma opção você deve justificar COMO essa opção é oferecida.
 
 > <img src="img/67.png" align="center" height=auto width=100%/>
 > <br/>
@@ -441,8 +439,7 @@ Fornece autenticidade pois ambos compatilham a chave secreta, então quando Bob 
 
 
 ### OpenSSL
-
-**Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.**
+Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.
 
 <br/>
 
@@ -450,35 +447,37 @@ Construa os comandos que Alice e Bob devem usar.
 <br/>
 Sua resposta deve conter:
 <br/>
-**a) comando(s) openssl de Alice;**
+a) comando(s) openssl de Alice
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
 
 <br/>
 <br/>
 
-**b) explicação do(s) comando(s) openss de Alice;**
+b) explicação do(s) comando(s) openss de Alice
 > Alice quer garantir a integridade da mensagem, então para isso é necessário usar hash com chave (HMAC). O comando calcula o MAC do arquivo t1.txt usando a chave aabbcc.
 
 <br/>
 <br/>
 
-**c) cite o que Alice envia para Bob;**
+c) cite o que Alice envia para Bob
 > Supondo que Alice e Bob já tenham compartilhado a chave, Alice precisa enviar o arquivo e o calculo (valor do HMAC) que é a saida deste comando
-> <br/>
-> <br/>
-**d) cite o que Bob recebe de Alice;**
+
+<br/>
+<br/>
+
+d) cite o que Bob recebe de Alice
 > Bob recebe o arquivo t1.txt e o valor do HMAC para recalcular o HMAC e assim conseguir conferir se esta igual.
 
 <br/>
 <br/>
 
-**e) comando(s) openssl de Bob;**
+e) comando(s) openssl de Bob
 > openssl dgst -sha256 -mac HMAC -macopt hexkey:aabbcc t1.txt 
 
 <br/>
 <br/>
 
-**f) explicação do(s) comando(s) openssl de Bob.**
+f) explicação do(s) comando(s) openssl de Bob.
 > Bob precisa executar o mesmo comando que Alice executou e conferir se a saída, valor de HMAC, é o mesmo que Alice havia lhe enviado. 
 
 ---
