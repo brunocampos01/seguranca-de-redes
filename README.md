@@ -146,12 +146,10 @@ Alice quer enviar uma mensagem **m** para Bob. Para isso ela encripta a mensagem
 
 Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e comente.
 > Chave de uso único: é usado para cifra uma mensagem. Não precisa de nonce. Ex: email cifrado
-> <br/>
 > Chave de uso múltiplo: é usado para cifrar múltiplas mensagens.Necessário usar nonce. Ex: SSL
 
 Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.
 > São geradores de números aleatórios ou pseudo-aleatórios.
-> <br/>
 > Ex: RC4
 
 
@@ -165,9 +163,7 @@ O que são os “modos de operação” das cifras de bloco?
 
 Para garantir a segurança no modo CBC, existe algum LIMITE de mensagens que podem ser cifradas com a mesma chave? Explique e dê exemplo.
 > Para este modo de operação existe um limite pois pode haver um ataque ativo de adulteração (tampering). Exemplos de limites:
-> <br/>
 > AES 128 bits de bloco: depois de 248 blocos AES, DEVE ser trocada a chave
-> <br/>
 > 3DES 64 bits de bloco: depois de 216 blocos 3DES, DEVE ser trocada a chave 
 
 A chave de um algoritmo de criptografia simétrica tem 3 bits. O IV tem 2 bits. Supondo que essa chave será usada para cifrar 35 mensagens:
@@ -183,9 +179,7 @@ c) será possível cifrar todas as 35 mensagens e garantir a segurança contra a
 
 Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 > Fornecem APENAS CONFIDENCIALIDADE 
-> <br/>
 > Problema de distribuição de chaves
-> <br/>
 > Mais rápidos que os sistemas assimétricos
 
 <br/>
@@ -245,7 +239,7 @@ Quais as propriedades das funções hash criptográficas?
 >- Garantem resistência a colisão: muito difícil encontrar duas mensagens que geram o mesmo valor de saída da função hash.
 
 
-> **Explique o conceito de hash sem chave.**
+Explique o conceito de hash sem chave
 > O conceito e funcionamento é o seguinte: o usuário prepara a sua mensagem inserindo no final da mensagem um hash. O usuário que irá receber a mensagem, recebe também o cálculo de hash, valor do HMAC. Então ele abre e recalcula o hash para comparar e garantir que não houve quebra de integridade.
 
 Explique o conceito de hash com chave. Por que o hash com chave fornece integridade e autenticidade?
@@ -266,7 +260,6 @@ Cite nomes de algoritmos de hash sem chave e com chave considerados importantes.
 >  Com chave: CMAC e CBC-MAC, HMAC
 
 Considerando que um código Java de um programa envia pela rede a mensagem e o SHA-256 da mensagem, conforme representado na figura 4, responda:
-> <br/>
 > <img src="img/sha.png" align="center" height=auto width=100%/>
 
 <br/>
@@ -283,9 +276,7 @@ b) Se o item a é possível, explique como impedir essa situação
 
 De acordo com o link https://crackstation.net/hashing-security.htm, comente o que é certo e o que é errado quando se usa hashes (com salt) para guardar senhas.
 >- É certo usar salt aleatório e com comprimento adequado
-> <br/>
 >- Usar o mesmo salt apenas uma vez
-> <br/>
 >- Usar algortimos de criptografia já existentes e aprovados pela comunidade
 
 
@@ -306,9 +297,7 @@ b) Desenhe como é verificado este MAC no lado de Bob
 <br/>
 
 c) Explique como e quais características são garantidas pelo MAC (CID)
-> <br/>
 >- integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
-> <br/>
 >- autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
 
 <br/>
