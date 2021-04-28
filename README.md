@@ -439,7 +439,7 @@ f) explicação do(s) comando(s) openssl de Bob.
 
 ### Criptografia Assimétrica
 
-1. Explique o funcionamento da criptografia assimétrica. 
+Explique o funcionamento da criptografia assimétrica. 
 > Uma chave “tranca” e outra chave “libera” qualquer coisa enviada pelo seu par ( “assimétrica”). Um chave é mantida em segredo (privada) e outra torna-se pública então para isso é necessário um “guardador” confiável da chave pública.
 > O passo a passo é:
 > <br/>
@@ -449,10 +449,10 @@ f) explicação do(s) comando(s) openssl de Bob.
 > <br/>
 > Passo 3: o receptor (e apenas ele) pode usar a chave privada que decifra aquela msg
 
-2. Dê exemplos de algoritmos assimétricos.
+Dê exemplos de algoritmos assimétricos.
 > RSA, Elliptic Curve, Algoritmos de Assinatura: RSA-PSS (PKCS#1, ISO/IEC 9796-2), DSA (FIPS PUB 186-3, ISO/IEC 14888-3), ECDSA
 
-3. Quais as vantagens e desvantagens dos algoritmos assimétricos?
+Quais as vantagens e desvantagens dos algoritmos assimétricos?
 > Vantagens: chaves públicas amplamente distribuídas, provê assinatura digital
 > Desvantagens: vagaroso, distribuição de chaves
 
