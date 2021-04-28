@@ -116,10 +116,10 @@ O que é um ataque? Conceitue e cite um exemplo.
 - Se tem **hash com chave**, tem autenticidade
 
 ### Exercícios
-> **Cite os dois tipos principais de algoritmos criptográficos.**
+**Cite os dois tipos principais de algoritmos criptográficos.**
 > Algoritmos simétricos que usam a mesma chave criptográfica e algoritmos assimétricos (chave pública) que usam pares de chaves públicas e podem ser amplamente disseminadas, e chaves privadas que são conhecidas apenas pelo proprietário.
 
-> **Quais são as técnicas de cifragem básicas**
+**Quais são as técnicas de cifragem básicas**
 > - Substituição
 > - Permutação
 > - Combinação
@@ -226,19 +226,20 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 
 ### Exercícios
 Quais as propriedades das funções hash criptográficas?
->- Garantem resistência contra "preimage":  sabendo o valor do hash é computacionalmente inviável encontrar a mensagem que deu origem àquele valor (sentido inverso da função é difícil).
+>Garantem resistência contra "preimage":  sabendo o valor do hash é computacionalmente inviável encontrar a mensagem que deu origem àquele valor (sentido inverso da função é difícil).
 > <br/>
->- Garantem resistência contra 'second pre-image": computacionalmente inviável encontrar uma 2ª msg que possui o mesmo valor hash que uma 1ª msg conhecida.
->- Garantem resistência a colisão: muito difícil encontrar duas mensagens que geram o mesmo valor de saída da função hash.
+>Garantem resistência contra 'second pre-image": computacionalmente inviável encontrar uma 2ª msg que possui o mesmo valor hash que uma 1ª msg conhecida.
+> <br/>
+>Garantem resistência a colisão: muito difícil encontrar duas mensagens que geram o mesmo valor de saída da função hash.
 
 
 Explique o conceito de hash sem chave
 > O conceito e funcionamento é o seguinte: o usuário prepara a sua mensagem inserindo no final da mensagem um hash. O usuário que irá receber a mensagem, recebe também o cálculo de hash, valor do HMAC. Então ele abre e recalcula o hash para comparar e garantir que não houve quebra de integridade.
 
 Explique o conceito de hash com chave. Por que o hash com chave fornece integridade e autenticidade?
->- Por que fornece integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
+> Por que fornece integridade: por conter um cálculo no emissor que pode ser recalculado no receptor para verificar a modificação do conteúdo.
 > <br/>
->- Por que fornece autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
+> Por que fornece autenticidade: por usar uma chave compartilhada por ambos no cálculo feito, assim, quem recebe a msg tem certeza de quem fez o cálculo no emissor, já que somente as duas partes compartilham a chave.
 
 Explique em detalhes o funcionamento representado na figura 3. A figura 3(a) é igual à figura 3(b). Na figura 3(a), o cálculo do MAC é chamado de TAG. Na figura 3(b), o cálculo do MAC é chamado de C e é calculado assim: MAC = C(K, M). A figura 3(b) está no livro do Stallings. O MAC pode ser chamado de: mac, hash com chave, código de autenticação de mensagem e tag.
 > <img src="img/hash_com_chave.png" align="center" height=auto width=100%/>
@@ -328,7 +329,7 @@ c) Confidencialidade, integridade e autenticidade da mensagem enviada de Alice p
 ---
 
 ## Criptografia Autenticada
-> O que é criptografia autenticada (authenticaded encryption)?
+O que é criptografia autenticada (authenticaded encryption)?
 > É a combinação da criptografia simétrica e MAC.
 
 Como é que a criptografia autenticada consegue garantir a confidencialidade, a integridade e a autenticidade? Explique
@@ -348,7 +349,7 @@ Quais os modos de criptografia autenticada? Represente cada um dos modos com uma
 > <img src="img/encrypt_then_mac.png" align="center" height=auto width=30%/>
 <br/>
 
-> Quais os padrões de criptografia autenticada? Quais os padrões que a biblioteca Bouncy Castle implementa?
+Quais os padrões de criptografia autenticada? Quais os padrões que a biblioteca Bouncy Castle implementa?
 > Os padrões (modos) da criptografia autenticada são MAC-then-encrypt, encrypt-then-MAC, encrypt-and-MAC. São as formas de organizar a "combinação entre MAC e criptografia simétrica".
 > <br/>
 > Boyce-Castle implementa:
@@ -458,19 +459,19 @@ f) explicação do(s) comando(s) openssl de Bob.
 
 ### Certificado Digital
 
-8. Explique o que é um certificado digital.
+Explique o que é um certificado digital.
 > É uma estrutura de dados que é gerada e assinada por uma entidade confiável, garantindo a autenticidade dos dados.
 
-9. O que é assinatura digital?
+O que é assinatura digital?
 > Assinar significa usar a chave privada (que é segredo e o dono não revela a ninguém) para cifrar uma msg. Assinatura digital é uma maneira segura de assinar  documentos que precisam transitar em meio eletrônico. 
 
-11.Para que serve a assinatura que existe no certificado digital? Explique detalhadamente como é feita essa assinatura.
+Para que serve a assinatura que existe no certificado digital? Explique detalhadamente como é feita essa assinatura.
 > Toda assinatura digital está associada a um certificado digital e é por meio dele que os dados do usuário ficarão protegidos e sem risco de serem violados.
 
-12.Explique detalhadamente como é verificada a assinatura de um certificado digital.
+Explique detalhadamente como é verificada a assinatura de um certificado digital.
 > Por exemplo, será enviado um arquivo de texto de modo seguro. Alice, que vai enviar o arquivo, publica a chave pública para verificação de assinaturas. O arquivo é cifrado, depois executado uma função hash, este hash do documento é inserido no algoritmo criptográfico assimétrico juntamente com a chave privada de Alice, como retorno é recebido a assinatura digital.
 
-14.Como um criptosistema de chave pública resolve o problema do gerenciamento de chaves?
+Como um criptosistema de chave pública resolve o problema do gerenciamento de chaves?
 > Criptosistemas de chave pública resolvem o problema da distribuição da chave secreta (desde que um canal seguro para comunicação de chaves públicas possa ser implementado) sendo que cada entidade tem um PAR de chaves: pública e privada
 <br/>
 <img src="img/assinatura_digital.png" align="center" height=auto width=50%/>
