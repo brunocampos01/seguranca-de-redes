@@ -54,8 +54,8 @@
 - Redes Privadas Virtuais (VPNs) 
 - Sistemas de Detecção de Intrusão 
 
-
-### Exercícios
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 
 Quais as três características essenciais de segurança? Cite um exemplo prático de cada característica.
 > As propriedades de segurança de informação são as seguintes:
@@ -80,7 +80,8 @@ O que é uma vulnerabilidade? Conceitue e cite um exemplo.
 
 O que é um ataque? Conceitue e cite um exemplo.
 > Ataque são ações para violar a segurança. Exploram as vulnerabilidades.
-
+</details>
+    
 ---
 
 ## Criptografia Simétrica
@@ -114,7 +115,9 @@ O que é um ataque? Conceitue e cite um exemplo.
 - Se tem **cifragem**, tem confidencialidade
 - Se tem **hash com chave**, tem autenticidade
 
-### Exercícios
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
+
 **Cite os dois tipos principais de algoritmos criptográficos.**
 > Algoritmos simétricos que usam a mesma chave criptográfica e algoritmos assimétricos (chave pública) que usam pares de chaves públicas e podem ser amplamente disseminadas, e chaves privadas que são conhecidas apenas pelo proprietário.
 
@@ -122,7 +125,6 @@ O que é um ataque? Conceitue e cite um exemplo.
 > - Substituição
 > - Permutação
 > - Combinação
-
 
 Explique o funcionamento da criptografia simétrica usando a figura 1.
 > <img src="img/critpografia_simetrica.png" align="center" height=auto width=100%/>
@@ -144,7 +146,6 @@ Qual a diferença entre chave de uso único e chave de uso múltiplo? Explique e
 Explique o que é uma cifra de fluxo. Cite nomes de algoritmos deste tipo.
 > São geradores de números aleatórios ou pseudo-aleatórios.
 > Ex: RC4
-
 
 Explique o que é uma cifra de bloco. Cite nomes de algoritmos deste tipo.
 > Uma cifra de bloco é um algoritmo determinístico que opera sobre agrupamentos de bits de tamanho fixo, chamados de blocos, com uma transformação invariável que é especificada por uma chave simétrica.
@@ -173,8 +174,7 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 > Fornecem APENAS CONFIDENCIALIDADE 
 > Problema de distribuição de chaves
 > Mais rápidos que os sistemas assimétricos
-
-<br/>
+</details>
 <br/>
 
 ---
@@ -198,6 +198,7 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 - Pode sofrer ataque de man-in-the-middle
 
 <img src="img/sha_sem_chave.png" align="center" height=auto width=100%/>
+
 <br/>
 <br/>
 
@@ -205,7 +206,6 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 - oferece **AUTENTICAÇÃO** na parte `H(M)`
 - || é concatenar
 
-<br/>
 <br/>
 
 #### Hash Criptográfico: **com** chave **(INTEGRIDADE + AUTENTICIDADE)**
@@ -222,8 +222,9 @@ Qual a vantagem e a desvantagem dos sistemas de criptografia simétrica?
 
 <br/>
 
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 
-### Exercícios
 Quais as propriedades das funções hash criptográficas?
 >Garantem resistência contra "preimage":  sabendo o valor do hash é computacionalmente inviável encontrar a mensagem que deu origem àquele valor (sentido inverso da função é difícil).
 > <br/>
@@ -325,10 +326,15 @@ c) Confidencialidade, integridade e autenticidade da mensagem enviada de Alice p
 <br/>
 > Bob decifra o texto utilizando a chave K2 em (D). Para validar a integridade dessa mensagem é feito um recálculo do MAC sobre a mensagem recebida utilizando a chave (K1) e em seguida é comparado os valores para ver se não houve alterações. 
 
+</details>
+
 ---
 
 ## Criptografia Autenticada
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 O que é criptografia autenticada (authenticaded encryption)?
+
 > É a combinação da criptografia simétrica e MAC.
 
 Como é que a criptografia autenticada consegue garantir a confidencialidade, a integridade e a autenticidade? Explique
@@ -358,9 +364,13 @@ Quais os padrões de criptografia autenticada? Quais os padrões que a bibliotec
 > - GCM (AEAD)
 > - OCB (AEAD)
 
+</details>
+
 ---
 
 ## Derivação de Chave
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 O que é uma função KDF?
 > Key Derivation Function (KDF) é uma função de derivação de chave.
 
@@ -391,11 +401,14 @@ a) Responda SIM ou NÃO em cada quadrado em branco; Se respondeu SIM em alguma o
 > <br/>
 > NOTA: é criptografia autenticada. Encrypt-then-MAC
 
+</details>
 
 ### OpenSSL
 Alice deseja enviar uma mensagem para Bob. Alice deseja que Bob tenha certeza que a mensagem não foi modificada enquanto estava trafegando pela rede. Para isso, Alice irá usar o openssl para construir o pacote a ser enviado para Bob. Bob também irá usar o openssl para verificar a mensagem recebida de Alice.
 
 <br/>
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 
 Construa os comandos que Alice e Bob devem usar.
 <br/>
@@ -434,9 +447,14 @@ e) comando(s) openssl de Bob
 f) explicação do(s) comando(s) openssl de Bob.
 > Bob precisa executar o mesmo comando que Alice executou e conferir se a saída, valor de HMAC, é o mesmo que Alice havia lhe enviado. 
 
+</details>
+
 ---
 
 ### Criptografia Assimétrica
+
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 
 Explique o funcionamento da criptografia assimétrica. 
 > Uma chave “tranca” e outra chave “libera” qualquer coisa enviada pelo seu par ( “assimétrica”). Um chave é mantida em segredo (privada) e outra torna-se pública então para isso é necessário um “guardador” confiável da chave pública.
@@ -454,9 +472,12 @@ Dê exemplos de algoritmos assimétricos.
 Quais as vantagens e desvantagens dos algoritmos assimétricos?
 > Vantagens: chaves públicas amplamente distribuídas, provê assinatura digital
 > Desvantagens: vagaroso, distribuição de chaves
-
+</details>
 
 ### Certificado Digital
+
+<details>
+  <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
 
 Explique o que é um certificado digital.
 > É uma estrutura de dados que é gerada e assinada por uma entidade confiável, garantindo a autenticidade dos dados.
@@ -475,7 +496,7 @@ Como um criptosistema de chave pública resolve o problema do gerenciamento de c
 <br/>
 <img src="img/assinatura_digital.png" align="center" height=auto width=50%/>
 <br/>
-
+</details>
 
 ---
 
