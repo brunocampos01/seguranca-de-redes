@@ -451,7 +451,7 @@ f) explicação do(s) comando(s) openssl de Bob.
 
 ---
 
-### Criptografia Assimétrica
+## Criptografia Assimétrica
 
 <details>
   <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
@@ -474,7 +474,9 @@ Quais as vantagens e desvantagens dos algoritmos assimétricos?
 > Desvantagens: vagaroso, distribuição de chaves
 </details>
 
-### Certificado Digital
+---
+
+## Certificado Digital
 
 <details>
   <summary><b> <a href="#"><img src="https://img.icons8.com/material/24/000000/graduation-cap--v1.png"/></a> Exercícios</b></summary>
